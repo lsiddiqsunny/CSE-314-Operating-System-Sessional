@@ -1,2 +1,0 @@
-datalayer.clientThread
-datalayer.Client
