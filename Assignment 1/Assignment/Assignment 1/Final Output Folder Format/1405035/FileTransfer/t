@@ -1,0 +1,95 @@
+OFFLINE:
+
+অফলাইন এ আমাদের একটা সিমুলেশন দেখাইতে বলছে, কিছু মানুষ একটা সার্কুলার রাস্তা চক্কর দিতেছে, এদের প্রতিটা স্টেপ প্রিন্ট করতে হবে। সবার স্পিড সমান না। AB রাস্তায় যে কেউ যে কাউকে ওভারটেক করতে পারবে। BC রাস্তা টু ওয়ে। মানে আসার যাওয়ার দুইটা রাস্তা । তবে রাস্তা দুইটায় একই দিকে কেউ কাউকে ওভারটেক করতে পারবে না। ধর , শিহাব স্টেপ ৫ এ দাড়ায় আছে, দিবু ৩ স্টেপে। শিহাব এর স্পিড ১ , তাই সে ৫ থেকে ৬ এ যাবে। দিবুর স্পিড ৫, সে ৩ থাকে ৮ এ যাইতে চাইবে, কিন্তু শিহাব তো ৬ এ দারায় আছে, তাই তার ৫ এ যেতে হবে। CD রাস্তা ওয়ান ওয়ে। মানে ওই রাস্তার এক দিকের মানুষ খালি হওয়ার আগে আরেক দিকের মানুষ আস্তে পারবে না। এখানেও এক দিকের মানুষ কেউ কাউকে ওভার টেক করতে পারবে না। DD রাস্তা AB এর মত ,কিন্তু ওয়ান ওয়ে, ওভারটেক সম্ভব ।
+
+SOLVE:
+
+
+//wiley er boi er chap 12 pore thakle easy hobe kisu ta. semaphore mutex kivabe kaj kore jante hobe age. ar ha, ami mutex use kore korsi. ekta semaphore. jana dorker, mutex ar semaphore er modde diff holo, mutex e jei thread lock kore takei unlock korte hoi, semaphore je jeu unlock korte pare. ar offline e ab ba dd pathe e syn lage na. bc cd dc cb pathe syn lage.
+
+coding part:
+
+#include <stdio.h>
+#include <pthread.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <semaphore.h>
+
+#define ab 10
+#define bc 5
+#define cd 50
+#define dd 300
+
+
+//global variable gula define korbi. jegula sob thread er jonno same hobe. 
+  example: bc, cd, dc, cb path e je array er ktha bolsi, File pointer, pthread_mutex_t variablegulo, pthread array.
+
+struct manus{
+	int NID;
+	int SPEED;
+};
+
+void thread func(void* info){
+	//info k (struct*) e cast kore nid r speed jene nibi.
+
+	//ab path soja. ekhane je keu je kauk overtake korte pare.first e distance = 0. so distance += speed korte thakbi jotokhon 
+	na distance = ab hoi. ar prottekta step print korte thakbi sleep(1) timegap dia.
+
+	//bc part ta ektu tough. ekhane keu kauk overtake korte parbe na. etar ekta roughly code niche dilam. matro ekta lock dia korsi.
+	while(distance != bc){
+		mutex_lock  [//ekhane mutex lock ar unlock er modde code part ekta thread use korte pare ek time e.]
+		
+		//bc steps er soman ekta array globally rakhbi sobgula zero dia. array er value 1 mane oi step e keu daray ase.
+		
+		//first e speed er soman songkhok samner ghor check korbi. jodi keu na thake tyle oi position e giye array value 1 kore dibi.
+		r keu thakle tar ager position e giye array value 1 kore dibi. ebar je position theke asce se position e array value 0 kore
+		dibi.
+
+		//protita step print korbi sleep(1) dia. r shese distance += (jei koita step agaisis) kore dibi.	
+		
+		mutex_unlock   
+		sleep(1);
+	}
+	
+	mutex_lock
+		person_number_entered_cd++;
+		if(person_number_entered_cd == 1) semaphore_wait(lol);
+	mutex_unlock
+	//cd part er jonno bc part copy paste korbi. bc er jaygay cd distance likhe dibi. cd dc cb part e mutex variable ar step er array ta 		vinno vinno nibi.
+	mutex_lock
+		person_number_entered_cd--;
+		if(person_number_entered_cd == 0) semaphore_post(lol);
+	mutex_unlock
+
+	//dd part ab er code copy paste. ab er jaygay dd likhe dibi.
+
+	
+	mutex_lock
+		person_number_entered_dc++;
+		if(person_number_entered_dc == 1) semaphore_wait(lol);
+	mutex_unlock
+	//dc part er code cd er copy paste. just print korar time e step gulo cd theke minus kore print korbi.
+	mutex_lock
+		person_number_entered_dc--;
+		if(person_number_entered_dc == 0) semaphore_post(lol);
+	mutex_unlock
+
+	//cb part er code bc er copy paste . just print korar time e step gulo bc theke minus kore print korbi.
+
+	//ba part er code ab er copy paste . just print korar time e step gulo ab theke  minus kore print krbi.
+	
+	printf("Person %d has​ completed ​his​ walk\n",nid);
+	
+	pthread_exit(NULL);
+}
+
+
+int main(){
+	//ekhane global variable gulo first e initialize kore nibi.
+
+	//ekta loop chalabi. file theke nid ar speed read kore stucture banabi. population number er soman size er pthread er array globally 		define korbi. then sob gula pthread create create korbi. pthread create korar time e structure k (void*) e cast kore arg e jaygay likhe 	dibi. trpor thread func e ogula abar (struct *) e niye kaj korbi. protita thread create er majhe ekta sleep(1) delay dibi. mone rakhbi 
+	protita thread er jonno thread func run korbe parallely.
+
+	//arekta loop chalaya sobgula thread join kore dibi.
+
+}

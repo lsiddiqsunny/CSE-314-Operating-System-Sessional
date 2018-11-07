@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="601.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="server.LoginController">
+   <children>
+      <Label layoutX="248.0" layoutY="14.0" prefHeight="61.0" prefWidth="313.0" text="WELCOME" textFill="#8d1010">
+         <font>
+            <Font size="64.0" />
+         </font>
+      </Label>
+      <TextField fx:id="id" layoutX="220.0" layoutY="147.0" prefHeight="50.0" prefWidth="370.0" promptText="Student Id">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="pass" layoutX="220.0" layoutY="217.0" prefHeight="50.0" prefWidth="370.0" promptText="Password">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </PasswordField>
+      <Button layoutX="220.0" layoutY="330.0" mnemonicParsing="false" onAction="#sign_in" prefHeight="44.0" prefWidth="126.0" text="Sign In" textFill="#260b86">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Button layoutX="464.0" layoutY="330.0" mnemonicParsing="false" onAction="#exit" prefHeight="48.0" prefWidth="126.0" text="Exit" textFill="#15099e">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Label fx:id="status" layoutX="203.0" layoutY="427.0" prefHeight="50.0" prefWidth="524.0" textFill="#d30729e8">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

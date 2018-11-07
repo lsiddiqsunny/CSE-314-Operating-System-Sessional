@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ClientPack.ClientController">
+   <children>
+      <TextArea fx:id="textFileName" layoutX="397.0" layoutY="195.0" prefHeight="46.0" prefWidth="232.0" />
+      <Button fx:id="buttonSend" layoutX="146.0" layoutY="216.0" mnemonicParsing="false" onAction="#send" prefHeight="25.0" prefWidth="46.0" text="SEND" />
+      <TextArea fx:id="textRoll" layoutX="69.0" layoutY="68.0" prefHeight="37.0" prefWidth="200.0" />
+      <Button fx:id="buttonAccept" layoutX="653.0" layoutY="193.0" mnemonicParsing="false" onAction="#request" text="ACCEPT" />
+      <Button fx:id="buttonReject" layoutX="655.0" layoutY="228.0" mnemonicParsing="false" onAction="#request" text="REJECT" />
+      <TextArea fx:id="textSend" layoutX="22.0" layoutY="138.0" prefHeight="37.0" prefWidth="294.0" />
+      <TextArea fx:id="textPrev" layoutX="-1.0" layoutY="295.0" prefHeight="130.0" prefWidth="695.0" />
+      <TextArea fx:id="textAfter" layoutY="463.0" prefHeight="130.0" prefWidth="695.0" />
+      <Button fx:id="buttonError" layoutX="704.0" layoutY="305.0" mnemonicParsing="false" onAction="#showError" text="ERROR" />
+      <Button fx:id="buttonTimeOut" layoutX="704.0" layoutY="360.0" mnemonicParsing="false" onAction="#showError" text="T/O" />
+      <Label layoutX="115.0" layoutY="31.0" minHeight="-Infinity" minWidth="-Infinity" text="Add Receipent" textFill="#0602f8d4">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="127.0" layoutY="114.0" minHeight="-Infinity" minWidth="-Infinity" text="Choose File" textFill="#0202f7d4">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="483.0" layoutY="18.0" minHeight="-Infinity" minWidth="-Infinity" text="NOTIFICATION" textFill="#02f70bf7">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="483.0" layoutY="156.0" minHeight="-Infinity" minWidth="-Infinity" text="Save AS" textFill="#02f70bf7">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Line endX="100.0" fill="#1bc41e" layoutX="346.0" layoutY="133.0" startX="-100.0" stroke="#20eafa" strokeLineCap="BUTT" strokeWidth="3.0" style="-fx-rotate: 90;" />
+      <Label layoutX="52.0" layoutY="430.0" minHeight="-Infinity" minWidth="-Infinity" text="After Modification" textFill="#0602f8d4">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="262.0" minHeight="-Infinity" minWidth="-Infinity" text="Before Modification" textFill="#0602f8d4">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="textShow" layoutX="380.0" layoutY="51.0" prefHeight="95.0" prefWidth="326.0" />
+      <Button fx:id="buttonBrowse" layoutX="25.0" layoutY="181.0" mnemonicParsing="false" onAction="#browse" text="Browse" />
+   </children>
+</AnchorPane>

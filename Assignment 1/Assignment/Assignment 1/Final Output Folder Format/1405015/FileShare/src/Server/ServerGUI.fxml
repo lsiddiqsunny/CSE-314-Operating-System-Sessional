@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Server.ServerGUIController">
+   <children>
+      <Text layoutX="252.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Server">
+         <font>
+            <Font size="35.0" />
+         </font>
+      </Text>
+      <Text layoutX="103.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maximum Buffer Size (KB) : " wrappingWidth="223.232421875">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="BufferSize" layoutX="348.0" layoutY="103.0" />
+      <Button fx:id="StartButton" layoutX="261.0" layoutY="188.0" mnemonicParsing="false" onAction="#StartServer" text="Start Server" />
+      <TextArea fx:id="log" editable="false" layoutX="62.0" layoutY="234.0" prefHeight="141.0" prefWidth="499.0" />
+   </children>
+</AnchorPane>

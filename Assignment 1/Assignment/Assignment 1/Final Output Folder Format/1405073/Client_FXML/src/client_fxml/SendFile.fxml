@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="337.0" prefWidth="509.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client_fxml.SendFileController">
+   <children>
+      <Button layoutX="274.0" layoutY="223.0" mnemonicParsing="false" onAction="#sendButtonPressed" prefHeight="25.0" prefWidth="55.0" text="Send" />
+      <Button layoutX="183.0" layoutY="224.0" mnemonicParsing="false" onAction="#browseButtonPressed" text="Browse" />
+      <TextField fx:id="recieverTextField" layoutX="181.0" layoutY="92.0" />
+      <TextField fx:id="filepathTextField" layoutX="180.0" layoutY="193.0" />
+      <Label layoutX="210.0" layoutY="68.0" text="Enter Reciever ID" />
+      <Label layoutX="215.0" layoutY="169.0" text="Enter FILE path" />
+      <Button layoutX="209.0" layoutY="123.0" mnemonicParsing="false" onAction="#checkValidityButtonPressed" text="Check Validity" />
+      <TextArea fx:id="textArea" layoutX="353.0" layoutY="193.0" prefHeight="86.0" prefWidth="128.0" visible="false" />
+   </children>
+</AnchorPane>

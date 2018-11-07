@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/home/antu/NetBeansProjects/MyAssignment/src/myassignment/Server.java</file>
+            <file>file:/home/antu/NetBeansProjects/MyAssignment/src/myassignment/ReceiveFile.java</file>
+            <file>file:/home/antu/NetBeansProjects/MyAssignment/src/myassignment/DLLAssignment.java</file>
+            <file>file:/home/antu/NetBeansProjects/MyAssignment/src/myassignment/SendToReceiver.java</file>
+            <file>file:/home/antu/NetBeansProjects/MyAssignment/src/myassignment/Response.java</file>
+            <file>file:/home/antu/NetBeansProjects/MyAssignment/src/myassignment/SendFile.java</file>
+            <file>file:/home/antu/NetBeansProjects/MyAssignment/src/myassignment/AcknowledgementTimerTask.java</file>
+            <file>file:/home/antu/NetBeansProjects/MyAssignment/src/myassignment/FileTransfer.java</file>
+        </group>
+    </open-files>
+</project-private>

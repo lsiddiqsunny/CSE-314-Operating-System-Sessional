@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="174.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.ClientStartUp">
+      <Button layoutX="121.0" layoutY="75.0" mnemonicParsing="false" onAction="#connect" text="Connect" />
+      <TextField fx:id="textBoxID" layoutX="75.0" layoutY="2.0" promptText="Enter ID" />
+      <Label fx:id="label" layoutX="84.0" layoutY="141.0" text="User already logged in" visible="false">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+</AnchorPane>

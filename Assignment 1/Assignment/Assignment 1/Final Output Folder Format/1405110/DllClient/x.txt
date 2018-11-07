@@ -1,0 +1,602 @@
+#include<stdio.h>
+#include<pthread.h>
+#include<semaphore.h>
+#include<unistd.h>
+#define dab 100
+#define dbc  5
+#define dcd 50
+#define dDD 300
+
+
+
+sem_t sem_CD;
+sem_t sem_DC;
+pthread_mutex_t mutBC;
+pthread_mutex_t mutCD;
+pthread_mutex_t mutCB;
+pthread_mutex_t mutDC;
+
+
+
+
+int cno;
+
+int countCD=0,countDC=0;
+
+int check[dbc] = {0};
+int checkCB[dbc] = {0};
+int checkCD[dcd] = {0};
+int checkDC[dcd] = {0};
+
+
+int min(int p,int q)
+{
+    if(p<q)
+        return p;
+    else
+        return q;
+
+}
+
+struct citizen
+{
+    int id;
+    int sps;
+
+
+};
+
+
+
+
+void * IPCpath(void *th){
+    struct citizen *tinfo=(struct citizen *) th;
+
+    int tid=tinfo->id;
+    int steps=tinfo->sps;
+
+    int no,in,cnt,taken,add,i,pos,back,dist;
+    int var,var2;
+
+
+
+
+
+    no = 0;
+    while(no < dab)
+    {
+        if(steps > dab-no)
+        {
+            add = dab-no;
+
+        }
+        else
+        {
+          add = steps;
+        }
+
+      //  add = min(steps,dab-no);
+
+        printf("Person %d  with %d steps moved along AB from %d to %d\n",tid,steps,no,no+add);
+
+
+
+        no = no+add;
+         sleep(1);
+    }
+
+
+
+   no=0;
+   pos = no-1;
+    while(no < dbc)
+    {
+
+
+
+       pthread_mutex_lock(&mutBC);
+
+
+
+       if(steps > dbc-no)
+        {
+            add = dbc-no;
+
+        }
+        else
+        {
+          add = steps;
+        }
+
+        // add = min(steps,dbc-no);
+
+
+
+
+       taken=0;
+       for(cnt=0;cnt<add;cnt++)
+       {
+           if(check[no+cnt] == 0)
+           {
+             taken=cnt+1;
+             check[no+cnt] = 1;
+           }
+           else
+           {
+
+               break;
+           }
+       }
+
+       sleep(1);
+
+       printf("Person %d  with %d steps moved along BC from %d to %d\n",tid,steps,no,(no+taken));
+
+
+
+        if(taken>0)
+        {
+
+           if(no > 0)
+            {
+
+
+                check[no-1]=0;
+
+            }
+
+
+           for(cnt=0;cnt<taken-1;cnt++)
+           {
+               check[no+cnt] = 0;
+           }
+
+           no = no+taken;
+
+
+        }
+
+       pthread_mutex_unlock(&mutBC);
+
+       sleep(1);
+
+
+    }
+
+
+  //  check[dbc-1]=0;
+
+
+
+    pthread_mutex_lock(&mutCD);
+    countCD++;
+    if(countCD == 1)
+    {
+        sem_wait(&sem_CD);
+    }
+    check[dbc-1]=0;
+    pthread_mutex_unlock(&mutCD);
+
+    no=0;
+
+    while(no < dcd)
+    {
+
+
+         pthread_mutex_lock(&mutCD);
+
+         //check[dbc-1]=0;
+
+
+
+       if(steps > dcd-no)
+        {
+            add = dcd-no;
+
+        }
+        else
+        {
+          add = steps;
+        }
+
+         //add = min(steps,dcd-no);
+
+
+
+
+       taken=0;
+       for(cnt=0;cnt<add;cnt++)
+       {
+           if(checkCD[no+cnt] == 0)
+           {
+             taken=cnt+1;
+             checkCD[no+cnt] = 1;
+           }
+           else
+           {
+
+               break;
+           }
+       }
+
+       sleep(1);
+
+       printf("Person %d  with %d steps moved along CD from %d to %d\n",tid,steps,no,(no+taken));
+
+
+
+
+        if(taken>0)
+        {
+
+           if(no > 0)
+            {
+
+
+                checkCD[no-1]=0;
+
+            }
+
+
+           for(cnt=0;cnt<taken-1;cnt++)
+           {
+               checkCD[no+cnt] = 0;
+           }
+
+           no = no+taken;
+
+
+        }
+
+       pthread_mutex_unlock(&mutCD);
+
+       sleep(1);
+
+
+    }
+
+    //checkCD[dcd-1] = 0;
+
+    pthread_mutex_lock(&mutCD);
+    countCD--;
+    if(countCD == 0)
+    {
+        sem_post(&sem_CD);
+    }
+
+    checkCD[dcd-1] = 0;
+
+    pthread_mutex_unlock(&mutCD);
+
+
+
+
+
+
+    no = 0;
+    while(no < dDD)
+    {
+        if(steps > dDD-no)
+        {
+            add = dDD-no;
+
+        }
+        else
+        {
+          add = steps;
+        }
+
+         //add = min(steps,dDD-no);
+
+        printf("Person %d  with %d steps moved along DD from %d to %d\n",tid,steps,no,no+add);
+
+
+        no = no+add;
+        sleep(1);
+    }
+
+
+
+
+
+
+
+
+
+
+    pthread_mutex_lock(&mutDC);
+    countDC++;
+    if(countDC == 1)
+    {
+        sem_wait(&sem_CD);
+    }
+    pthread_mutex_unlock(&mutDC);
+
+    no=0;
+
+    while(no<dcd)
+    {
+
+
+         pthread_mutex_lock(&mutDC);
+
+
+
+       if(steps > dcd-no)
+        {
+            add = dcd-no;
+
+        }
+        else
+        {
+          add = steps;
+        }
+
+         //add = min(steps,dcd-no);
+
+
+
+
+       taken=0;
+       for(cnt=0;cnt<add;cnt++)
+       {
+           if(checkDC[no+cnt] == 0)
+           {
+             taken=cnt+1;
+             checkDC[no+cnt] = 1;
+           }
+           else
+           {
+
+               break;
+           }
+       }
+
+       sleep(1);
+
+       printf("Person %d  with %d steps moved along DC from %d to %d\n",tid,steps,dcd-no,((dcd)-(no+taken)));
+
+
+
+
+        if(taken>0)
+        {
+
+           if(no > 0)
+            {
+
+
+                checkDC[no-1]=0;
+
+            }
+
+
+           for(cnt=0;cnt<taken-1;cnt++)
+           {
+               checkDC[no+cnt] = 0;
+           }
+
+           no = no+taken;
+
+        }
+
+       pthread_mutex_unlock(&mutDC);
+
+       sleep(1);
+
+
+    }
+
+    // checkDC[dcd-1] = 0;
+
+    pthread_mutex_lock(&mutDC);
+    countDC--;
+    if(countDC == 0)
+    {
+        sem_post(&sem_CD);
+    }
+    checkDC[dcd-1] = 0;
+
+    pthread_mutex_unlock(&mutDC);
+
+
+
+
+
+
+
+
+
+
+
+
+
+   no=0;
+   pos = dbc+1;
+
+   while(no < dbc)
+    {
+
+
+
+       pthread_mutex_lock(&mutCB);
+
+
+
+
+
+       if(steps > dbc-no)
+        {
+            add = dbc-no;
+
+        }
+        else
+        {
+          add = steps;
+        }
+
+         //add = min(steps,dbc-no);
+
+
+
+
+       taken=0;
+       for(cnt=0;cnt<add;cnt++)
+       {
+           if(checkCB[no+cnt] == 0)
+           {
+             taken=cnt+1;
+             checkCB[no+cnt] = 1;
+           }
+           else
+           {
+
+               break;
+           }
+       }
+
+       sleep(1);
+
+       printf("Person %d  with %d steps moved along CB from %d to %d\n",tid,steps,((dbc)-no),((dbc)-(no+taken)));
+
+
+
+
+        if(taken>0)
+        {
+
+           if(no > 0)
+            {
+
+
+                checkCB[no-1]=0;
+
+            }
+
+
+           for(cnt=0;cnt<taken-1;cnt++)
+           {
+               checkCB[no+cnt] = 0;
+           }
+
+
+           no = no+taken;
+
+
+       }
+
+
+
+       pthread_mutex_unlock(&mutCB);
+
+       sleep(1);
+
+
+    }
+
+     checkCB[dbc-1]=0;
+
+    no = 0;
+    pos = dab+1;
+    while(no < dab)
+    {
+        if(steps > dab-no)
+        {
+            add = dab-no;
+
+        }
+        else
+        {
+          add = steps;
+        }
+
+        // add = min(steps,dab-no);
+
+        printf("Person %d  with %d steps moved along BA from %d to %d\n",tid,steps,((dab)-no),((dab)-(no+add)));
+
+
+        no = no+add;
+
+        sleep(1);
+    }
+
+
+    printf("Person %d has completed his walk\n",tid);
+
+
+
+   long val=tid+steps;
+
+   pthread_exit((void *)val);
+}
+
+
+int main()
+{
+
+
+   void *status;
+   int x,rc;
+
+    FILE *f;// = NULL;
+    f = fopen("a.txt","r");
+
+    if(f == NULL)
+    {
+
+        printf("Not found\n");
+
+    }
+
+
+    fscanf(f,"%d",&x);
+    printf("Number of threads : %d\n",x);
+
+    int a[x];
+    int i;
+
+    for(i=0;i<x;i++)
+    {
+
+
+    fscanf(f,"%d",&a[i]);
+
+    }
+
+
+
+
+
+    fclose(f);
+
+    sem_init(&sem_CD,0,1);
+    sem_init(&sem_DC,0,1);
+
+
+
+    struct  citizen data[x];
+
+    pthread_t persons[x];
+
+    for(i=0;i<x;i++)
+    {
+        data[i].id = i+1;
+        data[i].sps = a[i];
+
+        printf("Main: creating thread %d with sps %d...\n",i,data[i].sps);
+        rc=pthread_create(&persons[i],NULL,IPCpath,(void *)&data[i]);
+    }
+
+     for(i=0;i<x;i++){
+        pthread_join(persons[i],&status);
+        printf("joined: %ld\n",(long)status);
+    }
+
+
+
+   // while(1);
+
+
+
+    return 0;
+}

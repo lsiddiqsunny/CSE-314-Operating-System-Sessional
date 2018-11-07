@@ -1,0 +1,85 @@
+import com.sun.deploy.util.StringUtils;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
+
+import javax.xml.bind.SchemaOutputResolver;
+import java.io.*;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+import java.util.Scanner;
+
+import static sun.util.calendar.CalendarUtils.mod;
+
+/**
+ * Created by Asus on 9/29/2017.
+ */
+public class OK {
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
+    private static   String s="";
+    private static String cng=null;
+
+    public static int power(int a, int b)
+    {
+        int power = 1;
+        for(int c=0;c<b;c++)
+            power*=a;
+        return power;
+    }
+    //String s = "";
+
+
+    public static String changeCharInPosition(int position, char ch, String str){
+        char[] charArray = str.toCharArray();
+        charArray[position] = ch;
+        return new String(charArray);
+
+    }
+
+    public static String intToString(int number) {
+        StringBuilder result = new StringBuilder();
+
+        for(int i = 7; i >= 0 ; i--) {
+            int mask = 1 << i;
+            result.append((number & mask) != 0 ? "1" : "0");
+
+            //if (i % groupSize == 0)
+                //result.append(" ");
+        }
+        //result.replace(result.length() - 1, result.length(), "");
+
+        return result.toString();
+    }
+
+    public  static int stringToInt(String s)
+    {
+        int res=0;
+
+        for (int i = s.length()-1; i>=0 ; i--) {
+            if(s.charAt(i)=='1') res+=power(2,s.length()-i-1);
+
+        }
+                    System.out.println(cng.length());
+
+                }
+
+            }
+            else  break;
+
+
+        }
+
+
+        //s+="1111010101010101111";
+        System.out.println("originl bit==> "+s+"   len="+s.length());
+        System.out.println("Changed bit==> "+cng+" len="+cng.length());
+        String fr="01111110";
+        //String stuff=fr+s.replaceAll("11111","11110");
+        //System.out.println(stuff);
+        //System.out.println(stuff.length());
+
+        String payload= cng.replaceAll("11111","111110");
+        System.out.println("payload    ==> "+payload+"   len="+payload.length());
+        int ch=chesksum(s);
+        System.out.println("checksum==> "+ch);
+        String chcksum=intToString(ch);

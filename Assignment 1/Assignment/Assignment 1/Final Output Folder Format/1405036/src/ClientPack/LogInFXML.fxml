@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="ClientPack.LogInController">
+   <children>
+      <TextArea fx:id="textLogin" layoutX="243.0" layoutY="248.0" prefHeight="52.0" prefWidth="231.0" promptText="Enter Username">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </TextArea>
+      <Button fx:id="buttonLogin" layoutX="331.0" layoutY="341.0" mnemonicParsing="false" onAction="#logIn" text="LOG IN" />
+   </children>
+</AnchorPane>

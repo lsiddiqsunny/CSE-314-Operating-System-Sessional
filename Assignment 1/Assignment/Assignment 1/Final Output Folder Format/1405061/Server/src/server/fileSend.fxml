@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="489.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="server.FileSendController">
+   <children>
+      <TextField fx:id="filePath" layoutX="203.0" layoutY="101.0" prefHeight="48.0" prefWidth="538.0" promptText="File Path">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <Button fx:id="selectBut" layoutX="40.0" layoutY="101.0" mnemonicParsing="false" onAction="#chooseFile" prefHeight="48.0" prefWidth="129.0" text="Select File" textFill="#5b4157">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Label layoutX="55.0" layoutY="176.0" prefHeight="40.0" prefWidth="96.0" text="Receiver">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="recId" layoutX="203.0" layoutY="176.0" prefHeight="40.0" prefWidth="135.0" />
+      <Button fx:id="sendBut" layoutX="365.0" layoutY="174.0" mnemonicParsing="false" onAction="#sendFile" prefHeight="40.0" prefWidth="107.0" text="Send">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Button>
+      <TextField fx:id="notifTxt" layoutX="203.0" layoutY="318.0" prefHeight="40.0" prefWidth="538.0" />
+      <Label layoutX="40.0" layoutY="318.0" prefHeight="40.0" prefWidth="129.0" text="Notifications">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="yesBut" layoutX="203.0" layoutY="393.0" mnemonicParsing="false" onAction="#receiveFile" prefHeight="45.0" prefWidth="96.0" text="Yes">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="noBut" layoutX="347.0" layoutY="393.0" mnemonicParsing="false" onAction="#rejectFile" prefHeight="45.0" prefWidth="96.0" text="No">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Label fx:id="stdId" layoutX="251.0" layoutY="30.0" prefHeight="40.0" prefWidth="192.0" textFill="#e11313">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="logout" layoutX="546.0" layoutY="393.0" mnemonicParsing="false" onAction="#logoutNow" prefHeight="48.0" prefWidth="157.0" text="Logout">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Button>
+      <Button fx:id="error" layoutX="203.0" layoutY="245.0" mnemonicParsing="false" onAction="#introCheckSumError" prefHeight="45.0" prefWidth="221.0" text="Introduce Check Sum Error">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="lostFrame" layoutX="458.0" layoutY="246.0" mnemonicParsing="false" onAction="#introRandomLostFrame" prefHeight="45.0" prefWidth="260.0" text="Introduce Random Lost Frame" />
+   </children>
+</AnchorPane>

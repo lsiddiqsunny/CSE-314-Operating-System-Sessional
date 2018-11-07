@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SecondPage">
+   <children>
+      <Text layoutX="26.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FilechooseClient">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text layoutX="28.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Send File to:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <TextField fx:id="ReceiverId" layoutX="28.0" layoutY="268.0" />
+      <Text fx:id="SendText" layoutX="26.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="212.826171875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="SendBtn" layoutX="28.0" layoutY="309.0" mnemonicParsing="false" onAction="#SendBtnClicked" prefHeight="32.0" prefWidth="65.0" text="Send" />
+      <Text fx:id="SenderId" layoutX="339.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="text" wrappingWidth="246.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="244.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Receive From:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="ReceiveText" layoutX="270.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="313.826171875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="FileName" layoutX="112.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="104.2294921875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button layoutX="35.0" layoutY="77.0" mnemonicParsing="false" onAction="#ChooseFileBtnClicked" prefHeight="32.0" prefWidth="77.0" text="Choose File" />
+      <Text layoutX="38.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Name:" wrappingWidth="65.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="ReceiverFileName" layoutX="314.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="267.826171875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="244.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Name:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="244.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Size:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="ReceiverFileSize" layoutX="307.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="281.826171875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Button fx:id="closeButton" cancelButton="true" layoutX="450.0" layoutY="358.0" mnemonicParsing="false" onAction="#handleCloseButtonAction" prefWidth="100.0" text="Close" />
+      <Text layoutX="370.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserId:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="CurrentUserId" layoutX="422.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="YesOrNo" layoutX="273.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="313.826171875">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

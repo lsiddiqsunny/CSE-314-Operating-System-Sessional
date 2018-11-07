@@ -1,0 +1,893 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcpc;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+
+public class TCPC {
+
+    public static void main(String[] args) throws Exception {
+
+        //Initialize socket
+        Socket socket = new Socket("localhost", 6789);
+        byte[] contents = new byte[10000];
+
+        //Initialize the FileOutputStream to the output file's full path.
+        File f = new File("hello.txt");
+        
+        
+        FileOutputStream fos = new FileOutputStream(f);
+        BufferedOutputStream bos = new BufferedOutputStream(fos);
+        InputStream is = socket.getInputStream();
+
+        //No of bytes read in one read() call
+        int bytesRead = 0;
+
+        //while ((bytesRead = is.read(contents)) != -1) {
+            //bos.write(contents, 0, bytesRead);
+        //}
+
+        bytesRead = is.read(contents, 0, contents.length);
+        int current = bytesRead;
+        do {
+            bytesRead = is.read(contents, current, (contents.length - current));
+            if (bytesRead >= 0) {
+                current += bytesRead;
+            }
+        } while (bytesRead > -1);
+
+        bos.flush();
+        socket.close();
+
+        System.out.println("File saved successfully!");
+    }
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcps;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class TCPS {
+
+    public static void main(String[] args) throws Exception {
+        //Initialize Sockets
+        ServerSocket ssock = new ServerSocket(6789);
+        Socket socket = ssock.accept();
+
+        //The InetAddress specification
+        InetAddress IA = InetAddress.getByName("localhost");
+
+        //Specify the file
+        File file = new File("helloclient.txt");
+
+        
+
+         try{    
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(fis);    
+          
+        
+
+        //Get socket's output stream
+        OutputStream os = socket.getOutputStream();
+
+        //Read File Contents into contents array 
+        byte[] contents;
+        long fileLength = file.length();
+        long current = 0;
+
+        long start = System.nanoTime();
+        while(current!=fileLength){ 
+            int size = 10000;
+            if(fileLength - current >= size)
+                current += size;    
+            else{ 
+                size = (int)(fileLength - current); 
+                current = fileLength;
+            } 
+        contents = new byte[1000];
+        bis.read(contents, 0, 1000);
+        os.write(contents);
+        System.out.print("Sending file ... " + (current * 100) / fileLength + "% complete!");
+        }   
+        
+
+        os.flush();
+        //File transfer done. Close the socket connection!
+        socket.close();
+        ssock.close();
+        System.out.println("File sent succesfully!");
+        }catch(Exception e){System.out.println(e);} 
+    }
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcpc;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+
+public class TCPC {
+
+    public static void main(String[] args) throws Exception {
+
+        //Initialize socket
+        Socket socket = new Socket("localhost", 6789);
+        byte[] contents = new byte[10000];
+
+        //Initialize the FileOutputStream to the output file's full path.
+        File f = new File("hello.txt");
+        
+        
+        FileOutputStream fos = new FileOutputStream(f);
+        BufferedOutputStream bos = new BufferedOutputStream(fos);
+        InputStream is = socket.getInputStream();
+
+        //No of bytes read in one read() call
+        int bytesRead = 0;
+
+        //while ((bytesRead = is.read(contents)) != -1) {
+            //bos.write(contents, 0, bytesRead);
+        //}
+
+        bytesRead = is.read(contents, 0, contents.length);
+        int current = bytesRead;
+        do {
+            bytesRead = is.read(contents, current, (contents.length - current));
+            if (bytesRead >= 0) {
+                current += bytesRead;
+            }
+        } while (bytesRead > -1);
+
+        bos.flush();
+        socket.close();
+
+        System.out.println("File saved successfully!");
+    }
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcps;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class TCPS {
+
+    public static void main(String[] args) throws Exception {
+        //Initialize Sockets
+        ServerSocket ssock = new ServerSocket(6789);
+        Socket socket = ssock.accept();
+
+        //The InetAddress specification
+        InetAddress IA = InetAddress.getByName("localhost");
+
+        //Specify the file
+        File file = new File("helloclient.txt");
+
+        
+
+         try{    
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(fis);    
+          
+        
+
+        //Get socket's output stream
+        OutputStream os = socket.getOutputStream();
+
+        //Read File Contents into contents array 
+        byte[] contents;
+        long fileLength = file.length();
+        long current = 0;
+
+        long start = System.nanoTime();
+        while(current!=fileLength){ 
+            int size = 10000;
+            if(fileLength - current >= size)
+                current += size;    
+            else{ 
+                size = (int)(fileLength - current); 
+                current = fileLength;
+            } 
+        contents = new byte[1000];
+        bis.read(contents, 0, 1000);
+        os.write(contents);
+        System.out.print("Sending file ... " + (current * 100) / fileLength + "% complete!");
+        }   
+        
+
+        os.flush();
+        //File transfer done. Close the socket connection!
+        socket.close();
+        ssock.close();
+        System.out.println("File sent succesfully!");
+        }catch(Exception e){System.out.println(e);} 
+    }
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcpc;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+
+public class TCPC {
+
+    public static void main(String[] args) throws Exception {
+
+        //Initialize socket
+        Socket socket = new Socket("localhost", 6789);
+        byte[] contents = new byte[10000];
+
+        //Initialize the FileOutputStream to the output file's full path.
+        File f = new File("hello.txt");
+        
+        
+        FileOutputStream fos = new FileOutputStream(f);
+        BufferedOutputStream bos = new BufferedOutputStream(fos);
+        InputStream is = socket.getInputStream();
+
+        //No of bytes read in one read() call
+        int bytesRead = 0;
+
+        //while ((bytesRead = is.read(contents)) != -1) {
+            //bos.write(contents, 0, bytesRead);
+        //}
+
+        bytesRead = is.read(contents, 0, contents.length);
+        int current = bytesRead;
+        do {
+            bytesRead = is.read(contents, current, (contents.length - current));
+            if (bytesRead >= 0) {
+                current += bytesRead;
+            }
+        } while (bytesRead > -1);
+
+        bos.flush();
+        socket.close();
+
+        System.out.println("File saved successfully!");
+    }
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcps;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class TCPS {
+
+    public static void main(String[] args) throws Exception {
+        //Initialize Sockets
+        ServerSocket ssock = new ServerSocket(6789);
+        Socket socket = ssock.accept();
+
+        //The InetAddress specification
+        InetAddress IA = InetAddress.getByName("localhost");
+
+        //Specify the file
+        File file = new File("helloclient.txt");
+
+        
+
+         try{    
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(fis);    
+          
+        
+
+        //Get socket's output stream
+        OutputStream os = socket.getOutputStream();
+
+        //Read File Contents into contents array 
+        byte[] contents;
+        long fileLength = file.length();
+        long current = 0;
+
+        long start = System.nanoTime();
+        while(current!=fileLength){ 
+            int size = 10000;
+            if(fileLength - current >= size)
+                current += size;    
+            else{ 
+                size = (int)(fileLength - current); 
+                current = fileLength;
+            } 
+        contents = new byte[1000];
+        bis.read(contents, 0, 1000);
+        os.write(contents);
+        System.out.print("Sending file ... " + (current * 100) / fileLength + "% complete!");
+        }   
+        
+
+        os.flush();
+        //File transfer done. Close the socket connection!
+        socket.close();
+        ssock.close();
+        System.out.println("File sent succesfully!");
+        }catch(Exception e){System.out.println(e);} 
+    }
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcpc;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+
+public class TCPC {
+
+    public static void main(String[] args) throws Exception {
+
+        //Initialize socket
+        Socket socket = new Socket("localhost", 6789);
+        byte[] contents = new byte[10000];
+
+        //Initialize the FileOutputStream to the output file's full path.
+        File f = new File("hello.txt");
+        
+        
+        FileOutputStream fos = new FileOutputStream(f);
+        BufferedOutputStream bos = new BufferedOutputStream(fos);
+        InputStream is = socket.getInputStream();
+
+        //No of bytes read in one read() call
+        int bytesRead = 0;
+
+        //while ((bytesRead = is.read(contents)) != -1) {
+            //bos.write(contents, 0, bytesRead);
+        //}
+
+        bytesRead = is.read(contents, 0, contents.length);
+        int current = bytesRead;
+        do {
+            bytesRead = is.read(contents, current, (contents.length - current));
+            if (bytesRead >= 0) {
+                current += bytesRead;
+            }
+        } while (bytesRead > -1);
+
+        bos.flush();
+        socket.close();
+
+        System.out.println("File saved successfully!");
+    }
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcps;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class TCPS {
+
+    public static void main(String[] args) throws Exception {
+        //Initialize Sockets
+        ServerSocket ssock = new ServerSocket(6789);
+        Socket socket = ssock.accept();
+
+        //The InetAddress specification
+        InetAddress IA = InetAddress.getByName("localhost");
+
+        //Specify the file
+        File file = new File("helloclient.txt");
+
+        
+
+         try{    
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(fis);    
+          
+        
+
+        //Get socket's output stream
+        OutputStream os = socket.getOutputStream();
+
+        //Read File Contents into contents array 
+        byte[] contents;
+        long fileLength = file.length();
+        long current = 0;
+
+        long start = System.nanoTime();
+        while(current!=fileLength){ 
+            int size = 10000;
+            if(fileLength - current >= size)
+                current += size;    
+            else{ 
+                size = (int)(fileLength - current); 
+                current = fileLength;
+            } 
+        contents = new byte[1000];
+        bis.read(contents, 0, 1000);
+        os.write(contents);
+        System.out.print("Sending file ... " + (current * 100) / fileLength + "% complete!");
+        }   
+        
+
+        os.flush();
+        //File transfer done. Close the socket connection!
+        socket.close();
+        ssock.close();
+        System.out.println("File sent succesfully!");
+        }catch(Exception e){System.out.println(e);} 
+    }
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcpc;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+
+public class TCPC {
+
+    public static void main(String[] args) throws Exception {
+
+        //Initialize socket
+        Socket socket = new Socket("localhost", 6789);
+        byte[] contents = new byte[10000];
+
+        //Initialize the FileOutputStream to the output file's full path.
+        File f = new File("hello.txt");
+        
+        
+        FileOutputStream fos = new FileOutputStream(f);
+        BufferedOutputStream bos = new BufferedOutputStream(fos);
+        InputStream is = socket.getInputStream();
+
+        //No of bytes read in one read() call
+        int bytesRead = 0;
+
+        //while ((bytesRead = is.read(contents)) != -1) {
+            //bos.write(contents, 0, bytesRead);
+        //}
+
+        bytesRead = is.read(contents, 0, contents.length);
+        int current = bytesRead;
+        do {
+            bytesRead = is.read(contents, current, (contents.length - current));
+            if (bytesRead >= 0) {
+                current += bytesRead;
+            }
+        } while (bytesRead > -1);
+
+        bos.flush();
+        socket.close();
+
+        System.out.println("File saved successfully!");
+    }
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcps;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class TCPS {
+
+    public static void main(String[] args) throws Exception {
+        //Initialize Sockets
+        ServerSocket ssock = new ServerSocket(6789);
+        Socket socket = ssock.accept();
+
+        //The InetAddress specification
+        InetAddress IA = InetAddress.getByName("localhost");
+
+        //Specify the file
+        File file = new File("helloclient.txt");
+
+        
+
+         try{    
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(fis);    
+          
+        
+
+        //Get socket's output stream
+        OutputStream os = socket.getOutputStream();
+
+        //Read File Contents into contents array 
+        byte[] contents;
+        long fileLength = file.length();
+        long current = 0;
+
+        long start = System.nanoTime();
+        while(current!=fileLength){ 
+            int size = 10000;
+            if(fileLength - current >= size)
+                current += size;    
+            else{ 
+                size = (int)(fileLength - current); 
+                current = fileLength;
+            } 
+        contents = new byte[1000];
+        bis.read(contents, 0, 1000);
+        os.write(contents);
+        System.out.print("Sending file ... " + (current * 100) / fileLength + "% complete!");
+        }   
+        
+
+        os.flush();
+        //File transfer done. Close the socket connection!
+        socket.close();
+        ssock.close();
+        System.out.println("File sent succesfully!");
+        }catch(Exception e){System.out.println(e);} 
+    }
+}
+
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcpc;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+
+public class TCPC {
+
+    public static void main(String[] args) throws Exception {
+
+        //Initialize socket
+        Socket socket = new Socket("localhost", 6789);
+        byte[] contents = new byte[10000];
+
+        //Initialize the FileOutputStream to the output file's full path.
+        File f = new File("hello.txt");
+        
+        
+        FileOutputStream fos = new FileOutputStream(f);
+        BufferedOutputStream bos = new BufferedOutputStream(fos);
+        InputStream is = socket.getInputStream();
+
+        //No of bytes read in one read() call
+        int bytesRead = 0;
+
+        //while ((bytesRead = is.read(contents)) != -1) {
+            //bos.write(contents, 0, bytesRead);
+        //}
+
+        bytesRead = is.read(contents, 0, contents.length);
+        int current = bytesRead;
+        do {
+            bytesRead = is.read(contents, current, (contents.length - current));
+            if (bytesRead >= 0) {
+                current += bytesRead;
+            }
+        } while (bytesRead > -1);
+
+        bos.flush();
+        socket.close();
+
+        System.out.println("File saved successfully!");
+    }
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcps;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class TCPS {
+
+    public static void main(String[] args) throws Exception {
+        //Initialize Sockets
+        ServerSocket ssock = new ServerSocket(6789);
+        Socket socket = ssock.accept();
+
+        //The InetAddress specification
+        InetAddress IA = InetAddress.getByName("localhost");
+
+        //Specify the file
+        File file = new File("helloclient.txt");
+
+        
+
+         try{    
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(fis);    
+          
+        
+
+        //Get socket's output stream
+        OutputStream os = socket.getOutputStream();
+
+        //Read File Contents into contents array 
+        byte[] contents;
+        long fileLength = file.length();
+        long current = 0;
+
+        long start = System.nanoTime();
+        while(current!=fileLength){ 
+            int size = 10000;
+            if(fileLength - current >= size)
+                current += size;    
+            else{ 
+                size = (int)(fileLength - current); 
+                current = fileLength;
+            } 
+        contents = new byte[1000];
+        bis.read(contents, 0, 1000);
+        os.write(contents);
+        System.out.print("Sending file ... " + (current * 100) / fileLength + "% complete!");
+        }   
+        
+
+        os.flush();
+        //File transfer done. Close the socket connection!
+        socket.close();
+        ssock.close();
+        System.out.println("File sent succesfully!");
+        }catch(Exception e){System.out.println(e);} 
+    }
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcpc;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+
+public class TCPC {
+
+    public static void main(String[] args) throws Exception {
+
+        //Initialize socket
+        Socket socket = new Socket("localhost", 6789);
+        byte[] contents = new byte[10000];
+
+        //Initialize the FileOutputStream to the output file's full path.
+        File f = new File("hello.txt");
+        
+        
+        FileOutputStream fos = new FileOutputStream(f);
+        BufferedOutputStream bos = new BufferedOutputStream(fos);
+        InputStream is = socket.getInputStream();
+
+        //No of bytes read in one read() call
+        int bytesRead = 0;
+
+        //while ((bytesRead = is.read(contents)) != -1) {
+            //bos.write(contents, 0, bytesRead);
+        //}
+
+        bytesRead = is.read(contents, 0, contents.length);
+        int current = bytesRead;
+        do {
+            bytesRead = is.read(contents, current, (contents.length - current));
+            if (bytesRead >= 0) {
+                current += bytesRead;
+            }
+        } while (bytesRead > -1);
+
+        bos.flush();
+        socket.close();
+
+        System.out.println("File saved successfully!");
+    }
+}
+
+
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tcps;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+public class TCPS {
+
+    public static void main(String[] args) throws Exception {
+        //Initialize Sockets
+        ServerSocket ssock = new ServerSocket(6789);
+        Socket socket = ssock.accept();
+
+        //The InetAddress specification
+        InetAddress IA = InetAddress.getByName("localhost");
+
+        //Specify the file
+        File file = new File("helloclient.txt");
+
+        
+
+         try{    
+            FileInputStream fis = new FileInputStream(file);
+            BufferedInputStream bis = new BufferedInputStream(fis);    
+          
+        
+
+        //Get socket's output stream
+        OutputStream os = socket.getOutputStream();
+
+        //Read File Contents into contents array 
+        byte[] contents;
+        long fileLength = file.length();
+        long current = 0;
+
+        long start = System.nanoTime();
+        while(current!=fileLength){ 
+            int size = 10000;
+            if(fileLength - current >= size)
+                current += size;    
+            else{ 
+                size = (int)(fileLength - current); 
+                current = fileLength;
+            } 
+        contents = new byte[1000];
+        bis.read(contents, 0, 1000);
+        os.write(contents);
+        System.out.print("Sending file ... " + (current * 100) / fileLength + "% complete!");
+        }   
+        
+
+        os.flush();
+        //File transfer done. Close the socket connection!
+        socket.close();
+        ssock.close();
+        System.out.println("File sent succesfully!");
+        }catch(Exception e){System.out.println(e);} 
+    }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="353.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.clientController">
+   <children>
+      <Button fx:id="send" layoutX="403.0" layoutY="289.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="89.0" text="Send" textFill="#1584bc" />
+      <Button fx:id="login" layoutX="211.0" layoutY="19.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="79.0" text="Log In" textFill="#09d310" />
+      <Button fx:id="logout" layoutX="411.0" layoutY="22.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="70.0" text="Log Out" textFill="#ee1f1f" />
+      <TextField fx:id="studentcon" layoutX="6.0" layoutY="21.0" prefHeight="32.0" prefWidth="179.0" promptText="Student Id" />
+      <TextField fx:id="sendcon" layoutX="7.0" layoutY="288.0" prefHeight="49.0" prefWidth="384.0" promptText="Write Here" />
+      <TextArea fx:id="clientcon" layoutX="7.0" layoutY="77.0" prefHeight="200.0" prefWidth="487.0" promptText="Som Thing" />
+      <Button fx:id="sndb" layoutX="303.0" layoutY="10.0" mnemonicParsing="false" prefHeight="11.0" prefWidth="89.0" text="File Send" />
+      <Button fx:id="sss" layoutX="304.0" layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" text="SEND" />
+   </children>
+</AnchorPane>

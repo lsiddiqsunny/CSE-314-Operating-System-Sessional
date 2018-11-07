@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/client_fxml/LogInPage.fxml</url>
+            <bookmark id="1">
+                <name/>
+                <line>11</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/H:/Java%20Programs/Client_FXML/src/client_fxml/Client_FXML.java</file>
+            <file>file:/H:/Java%20Programs/Client_FXML/src/client_fxml/SendFile.fxml</file>
+            <file>file:/H:/Java%20Programs/Client_FXML/src/client_fxml/LogInPage.fxml</file>
+            <file>file:/H:/Java%20Programs/Client_FXML/src/client_fxml/SendFileController.java</file>
+            <file>file:/H:/Java%20Programs/Client_FXML/src/client_fxml/HomePageController.java</file>
+            <file>file:/H:/Java%20Programs/Client_FXML/src/client_fxml/LogInPageController.java</file>
+            <file>file:/H:/Java%20Programs/Client_FXML/src/client_fxml/HomePage.fxml</file>
+        </group>
+    </open-files>
+</project-private>

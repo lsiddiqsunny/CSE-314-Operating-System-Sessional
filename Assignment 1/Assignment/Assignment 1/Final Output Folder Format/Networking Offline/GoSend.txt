@@ -1,0 +1,183 @@
+titive Programmer’s Handbook
+Antti Laaksonen
+Draft April 3, 2017
+ii
+Contents
+Preface ix
+I Basic techniques 1
+1 Introduction 3
+1.1 Programming languages . . . . . . . . . . . . . . . . . . . . . . . . .3
+1.2 Input and output . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .4
+1.3 Working with numbers . . . . . . . . . . . . . . . . . . . . . . . . . .6
+1.4 Shortening code . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .8
+1.5 Mathematics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .9
+1.6 Contests . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .15
+1.7 Resources . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .16
+2 Time complexity 17
+2.1 Calculation rules . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .17
+2.2 Complexity classes . . . . . . . . . . . . . . . . . . . . . . . . . . . . .20
+2.3 Estimating efﬁciency . . . . . . . . . . . . . . . . . . . . . . . . . . .21
+2.4 Maximum subarray sum . . . . . . . . . . . . . . . . . . . . . . . . .21
+3 Sorting 25
+3.1 Sorting theory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .25
+3.2 Sorting in C++ . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .29
+3.3 Binary search . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .31
+4 Data structures 35
+4.1 Dynamic arrays . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .35
+4.2 Set structures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .37
+4.3 Map structures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .38
+4.4 Iterators and ranges . . . . . . . . . . . . . . . . . . . . . . . . . . . .39
+4.5 Other structures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .41
+4.6 Comparison to sorting . . . . . . . . . . . . . . . . . . . . . . . . . . .44
+5 Complete search 47
+5.1 Generating subsets . . . . . . . . . . . . . . . . . . . . . . . . . . . . .47
+5.2 Generating permutations . . . . . . . . . . . . . . . . . . . . . . . . .49
+5.3 Backtracking . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .50
+5.4 Pruning the search . . . . . . . . . . . . . . . . . . . . . . . . . . . . .51
+iii
+5.5 Meet in the middle . . . . . . . . . . . . . . . . . . . . . . . . . . . . .54
+6 Greedy algorithms 57
+6.1 Coin problem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .57
+6.2 Scheduling . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .58
+6.3 Tasks and deadlines . . . . . . . . . . . . . . . . . . . . . . . . . . . .60
+6.4 Minimizing sums . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .61
+6.5 Data compression . . . . . . . . . . . . . . . . . . . . . . . . . . . . .62
+7 Dynamic programming 65
+7.1 Coin problem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .65
+7.2 Longest increasing subsequence . . . . . . . . . . . . . . . . . . . . .70
+7.3 Paths in a grid . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .71
+7.4 Knapsack . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .72
+7.5 Edit distance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .73
+7.6 Counting tilings . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .75
+8 Amortized analysis 77
+8.1 Two pointers method . . . . . . . . . . . . . . . . . . . . . . . . . . .77
+8.2 Nearest smaller elements . . . . . . . . . . . . . . . . . . . . . . . . .80
+8.3 Sliding window minimum . . . . . . . . . . . . . . . . . . . . . . . . .81
+9 Range queries 83
+9.1 Static array queries . . . . . . . . . . . . . . . . . . . . . . . . . . . .84
+9.2 Binary indexed trees . . . . . . . . . . . . . . . . . . . . . . . . . . . .86
+9.3 Segment trees . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .89
+9.4 Additional techniques . . . . . . . . . . . . . . . . . . . . . . . . . . .93
+10 Bit manipulation 97
+10.1 Bit representation . . . . . . . . . . . . . . . . . . . . . . . . . . . . .97
+10.2 Bit operations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .98
+10.3 Representing sets . . . . . . . . . . . . . . . . . . . . . . . . . . . . .100
+10.4 Dynamic programming . . . . . . . . . . . . . . . . . . . . . . . . . .102
+II Graph algorithms 105
+11 Basics of graphs 107
+11.1 Graph terminology . . . . . . . . . . . . . . . . . . . . . . . . . . . . .107
+11.2 Graph representation . . . . . . . . . . . . . . . . . . . . . . . . . . .111
+12 Graph traversal 115
+12.1 Depth-ﬁrst search . . . . . . . . . . . . . . . . . . . . . . . . . . . . .115
+12.2 Breadth-ﬁrst search . . . . . . . . . . . . . . . . . . . . . . . . . . . .117
+12.3 Applications . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .119
+iv
+13 Shortest paths 121
+13.1 Bellman–Ford algorithm . . . . . . . . . . . . . . . . . . . . . . . . .121
+13.2 Dijkstra’s algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . .124
+13.3 Floyd–Warshall algorithm . . . . . . . . . . . . . . . . . . . . . . . .127
+14 Tree algorithms 131
+14.1 Tree traversal . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .132
+14.2 Diameter . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .133
+14.3 Distances between nodes . . . . . . . . . . . . . . . . . . . . . . . . .134
+14.4 Binary trees . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .135
+15 Spanning trees 137
+15.1 Kruskal’s algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . .138
+15.2 Union-ﬁnd structure . . . . . . . . . . . . . . . . . . . . . . . . . . . .141
+15.3 Prim’s algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .143
+16 Directed graphs 145
+16.1 Topological sorting . . . . . . . . . . . . . . . . . . . . . . . . . . . . .145
+16.2 Dynamic programming . . . . . . . . . . . . . . . . . . . . . . . . . .147
+16.3 Successor paths . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .150
+16.4 Cycle detection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .151
+17 Strong connectivity 153
+17.1 Kosaraju’s algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . .154
+17.2 2SAT problem . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .156
+18 Tree queries 159
+18.1 Finding ancestors . . . . . . . . . . . . . . . . . . . . . . . . . . . . .159
+18.2 Subtrees and paths . . . . . . . . . . . . . . . . . . . . . . . . . . . .160
+18.3 Lowest common ancestor . . . . . . . . . . . . . . . . . . . . . . . . .163
+19 Paths and circuits 167
+19.1 Eulerian paths . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .167
+19.2 Hamiltonian paths . . . . . . . . . . . . . . . . . . . . . . . . . . . . .171
+19.3 De Bruijn sequences . . . . . . . . . . . . . . . . . . . . . . . . . . . .172
+19.4 Knight’s tours . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .173
+20 Flows and cuts 175
+20.1 Ford–Fulkerson algorithm . . . . . . . . . . . . . . . . . . . . . . . .176
+20.2 Disjoint paths . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .180
+20.3 Maximum matchings . . . . . . . . . . . . . . . . . . . . . . . . . . .181
+20.4 Path covers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .184
+III Advanced topics 189
+21 Number theory 191
+21.1 Primes and factors . . . . . . . . . . . . . . . . . . . . . . . . . . . . .191
+v
+21.2 Modular arithmetic . . . . . . . . . . . . . . . . . . . . . . . . . . . .195
+21.3 Solving equations . . . . . . . . . . . . . . . . . . . . . . . . . . . . .198
+21.4 Other results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .199
+22 Combinatorics 201
+22.1 Binomial coefﬁcients . . . . . . . . . . . . . . . . . . . . . . . . . . . .202
+22.2 Catalan numbers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .204
+22.3 Inclusion-exclusion . . . . . . . . . . . . . . . . . . . . . . . . . . . . .206
+22.4 Burnside’s lemma . . . . . . . . . . . . . . . . . . . . . . . . . . . . .208
+22.5 Cayley’s formula . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .209
+23 Matrices 211
+23.1 Operations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .211
+23.2 Linear recurrences . . . . . . . . . . . . . . . . . . . . . . . . . . . . .214
+23.3 Graphs and matrices . . . . . . . . . . . . . . . . . . . . . . . . . . .216
+24 Probability 219
+24.1 Calculation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .219
+24.2 Events . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .220
+24.3 Random variables . . . . . . . . . . . . . . . . . . . . . . . . . . . . .222
+24.4 Markov chains . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .224
+24.5 Randomized algorithms . . . . . . . . . . . . . . . . . . . . . . . . . .225
+25 Game theory 229
+25.1 Game states . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .229
+25.2 Nim game . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .231
+25.3 Sprague–Grundy theorem . . . . . . . . . . . . . . . . . . . . . . . .232
+26 String algorithms 237
+26.1 String terminology . . . . . . . . . . . . . . . . . . . . . . . . . . . . .237
+26.2 Trie structures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .238
+26.3 String hashing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .239
+26.4 Z-algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .241
+27 Square root algorithms 245
+27.1 Batch processing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .246
+27.2 Subalgorithms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .247
+27.3 Mo’s algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .247
+28 Segment trees revisited 249
+28.1 Lazy propagation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .250
+28.2 Dynamic trees . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .253
+28.3 Data structures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .255
+28.4 Two-dimensionality . . . . . . . . . . . . . . . . . . . . . . . . . . . .256
+vi
+29 Geometry 257
+29.1 Complex numbers . . . . . . . . . . . . . . . . . . . . . . . . . . . . .258
+29.2 Points and lines . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .260
+29.3 Polygon area . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .263
+29.4 Distance functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . .264
+30 Sweep line algorithms 267
+30.1 Intersection points . . . . . . . . . . . . . . . . . . . . . . . . . . . . .268
+30.2 Closest pair problem . . . . . . . . . . . . . . . . . . . . . . . . . . . .269
+30.3 Convex hull problem . . . . . . . . . . . . . . . . . . . . . . . . . . . .270
+Bibliography 273
+Index 277
+vii
+viii
+Preface
+The purpose of this book is to give you a thorough introduction to competitive
+programming. It is assumed that you already know the basics of programming,
+but previous background on competitive programming is not needed.
+The book is especially intended for students who want to learn algorithms
+and possibly participate in the International Olympiad in Informatics (IOI) or in
+the International Collegiate Programming Contest (ICPC). Of course, the book is
+also suitable for anybody else interested in competitive programming.
+It takes a long time to become a good competitive programmer, but it is also
+an opportunity to learn a lot. You can be sure that you will get a good general
+understanding of algorithms if you spend time reading the book, solving problems
+and taking part in contests.
+The book is under continuous development. You can always send feedback on
+the book to ahslaaks@cs.helsinki.fi.
+ix
+Helsinki, April 2017
+Antti Laaksonen
+x
+Part I

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Client.ClientGui">
+  <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="5" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="2215" y="228" width="687" height="386"/>
+    </constraints>
+    <properties>
+      <autoscrolls value="false"/>
+      <background color="-12828863"/>
+      <visible value="true"/>
+    </properties>
+    <border type="bevel-raised" title="  "/>
+    <children>
+      <grid id="630e0" binding="panel1" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="10" left="10" bottom="10" right="10"/>
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-12828863"/>
+        </properties>
+        <border type="none" title-justification="2" title-position="2">
+          <title-color color="-4473925"/>
+        </border>
+        <children>
+          <component id="c154b" class="javax.swing.JTextField" binding="id">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="30"/>
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-13553358"/>
+              <caretColor color="-1"/>
+              <doubleBuffered value="true"/>
+              <dragEnabled value="true"/>
+              <editable value="true"/>
+              <font name="Fira Code" size="16" style="1"/>
+              <foreground color="-1315861"/>
+              <margin top="0" left="20" bottom="0" right="20"/>
+              <requestFocusEnabled value="true"/>
+              <selectedTextColor color="-1118482"/>
+              <text value="Give Your Id"/>
+              <toolTipText value=""/>
+            </properties>
+          </component>
+          <component id="54975" class="javax.swing.JButton" binding="connectServerButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="30"/>
+                <maximum-size width="150" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <autoscrolls value="false"/>
+              <background color="-13487714"/>
+              <borderPainted value="true"/>
+              <contentAreaFilled value="true"/>
+              <doubleBuffered value="false"/>
+              <focusCycleRoot value="false"/>
+              <font name="Fira Code" size="12" style="1"/>
+              <foreground color="-272"/>
+              <inheritsPopupMenu value="false"/>
+              <opaque value="false"/>
+              <rolloverEnabled value="true"/>
+              <selected value="false"/>
+              <text value=" Connect Server"/>
+            </properties>
+            <clientProperties>
+              <hideActionText class="java.lang.Boolean" value="false"/>
+            </clientProperties>
+          </component>
+          <component id="cfa14" class="javax.swing.JButton" binding="sendFileButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="30"/>
+                <maximum-size width="-1" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-13487714"/>
+              <borderPainted value="true"/>
+              <contentAreaFilled value="true"/>
+              <font name="Fira Code" size="12" style="1"/>
+              <foreground color="-394759"/>
+              <opaque value="false"/>
+              <text value="Send File"/>
+            </properties>
+          </component>
+          <component id="51b04" class="javax.swing.JTextField" binding="receiverId">
+            <constraints>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="30"/>
+                <preferred-size width="150" height="-1"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-13289415"/>
+              <font name="Fira Code" size="16" style="1"/>
+              <foreground color="-1184275"/>
+              <margin top="0" left="20" bottom="0" right="20"/>
+              <text value="Receiver Id"/>
+              <visible value="false"/>
+            </properties>
+          </component>
+          <component id="b1cd6" class="javax.swing.JButton" binding="sendButton" default-binding="true">
+            <constraints>
+              <grid row="2" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-13487714"/>
+              <font name="Fira Code" size="12" style="1"/>
+              <foreground color="-921103"/>
+              <text value="Send"/>
+              <visible value="false"/>
+            </properties>
+          </component>
+          <component id="8f613" class="javax.swing.JButton" binding="receiveFileButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+                <minimum-size width="-1" height="30"/>
+                <maximum-size width="-1" height="30"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-13487714"/>
+              <borderPainted value="true"/>
+              <contentAreaFilled value="true"/>
+              <defaultCapable value="true"/>
+              <focusPainted value="true"/>
+              <focusable value="true"/>
+              <font name="Fira Code" size="12" style="1"/>
+              <foreground color="-723724"/>
+              <opaque value="false"/>
+              <requestFocusEnabled value="true"/>
+              <text value="Receive File"/>
+            </properties>
+          </component>
+          <component id="4c409" class="javax.swing.JTextArea" binding="status">
+            <constraints>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                <preferred-size width="150" height="50"/>
+              </grid>
+            </constraints>
+            <properties>
+              <background color="-10329502"/>
+              <editable value="false"/>
+              <font name="Fira Code" size="12" style="1"/>
+              <foreground color="-1"/>
+              <lineWrap value="true"/>
+              <visible value="false"/>
+            </properties>
+          </component>
+          <component id="89b63" class="javax.swing.JButton" binding="acceptButton" default-binding="true">
+            <constraints>
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-13487714"/>
+              <font name="Fira Code" size="12" style="1"/>
+              <foreground color="-1"/>
+              <opaque value="false"/>
+              <text value="Accept"/>
+              <visible value="false"/>
+            </properties>
+          </component>
+          <component id="20490" class="javax.swing.JButton" binding="declineButton" default-binding="true">
+            <constraints>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-13487714"/>
+              <font name="Fira Code" size="12" style="1"/>
+              <foreground color="-1"/>
+              <opaque value="false"/>
+              <text value="Decline"/>
+              <visible value="false"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <hspacer id="c8a91">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <hspacer id="bfb2">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </hspacer>
+      <vspacer id="aaf25">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <vspacer id="6d954">
+        <constraints>
+          <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <component id="209d1" class="javax.swing.JProgressBar" binding="progressBar">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <foreground color="-12288"/>
+          <indeterminate value="false"/>
+          <inheritsPopupMenu value="false"/>
+          <requestFocusEnabled value="false"/>
+          <string value=""/>
+          <stringPainted value="false"/>
+          <value value="0"/>
+          <visible value="false"/>
+        </properties>
+        <clientProperties>
+          <html.disable class="java.lang.Boolean" value="false"/>
+        </clientProperties>
+      </component>
+      <scrollpane id="c68d7">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <horizontalScrollBarPolicy value="31"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="2478f" class="javax.swing.JTextArea" binding="console">
+            <constraints/>
+            <properties>
+              <background color="-13947602"/>
+              <editable value="false"/>
+              <enabled value="true"/>
+              <foreground color="-526345"/>
+              <lineWrap value="true"/>
+              <margin top="5" left="5" bottom="5" right="5"/>
+              <tabSize value="4"/>
+              <text value="Welcome"/>
+              <wrapStyleWord value="false"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+    </children>
+  </grid>
+</form>

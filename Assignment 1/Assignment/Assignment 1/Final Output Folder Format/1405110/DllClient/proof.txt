@@ -1,0 +1,50 @@
+Server started.
+Accepted connection : Socket[addr=/127.0.0.1,port=53616,localport=1920]
+client 1 has joined
+Client : 1
+id 1
+operation send
+fname a.txt
+rid 2
+fnamea.txt got
+hi
+here
+here
+size 4
+8
+~ab	~8
+8
+8
+loop starts
+string loop
+01111110
+string loop
+0111111000000001
+string loop
+011111100000000100000010
+string loop
+01111110000000010000001000000010
+Exception in thread "Thread-0" java.lang.NumberFormatException: For input string: "0111111000000001000000010000000101100001011000100000100101111110"
+string loop
+0111111000000001000000100000001001100011
+string loop
+011111100000000100000010000000100110001101100100
+string loop
+01111110000000010000001000000010011000110110010000001010
+string loop
+0111111000000001000000100000001001100011011001000000101001111110
+000000010000001000000010011000110110010000001010
+0110010000001010
+0110001101100100
+input read
+total2size4read8
+output written
+8 4
+1 chunks received successfully
+0111111000000001000000010000000101100001011000100000100101111110
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:583)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at dllserver.DllConnection.writeFile(DllConnection.java:1395)
+	at dllserver.DllConnection.run(DllConnection.java:127)
+	at java.lang.Thread.run(Thread.java:745)

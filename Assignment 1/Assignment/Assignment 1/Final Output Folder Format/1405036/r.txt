@@ -1,0 +1,22 @@
+﻿Repack by Azprio
+
+Repack features:
+
+Nothing cut / recoded ;
+Game Version - v1.0.5.0s ;
+Language : English ;
+Precracked - install and play
+Final size: 7.18gb ;
+Operating system: Win XP SP3,Win Vista,Win 7,Win 8,Win 8.1,Win 10 (both 32bit and 64bit) ;
+
+**INSTALL INSTRUCTIONS:
+
+DISABLE YOUR ANTIVIRUS BEFORE RUNNING 'Setup.exe' (IMPORTANT) to avoid any error message . (For avast users: Just Disable DeepScreen in antivirus settings)...
+
+After running setup,, click on 'Configure',, specify the install directory,, click on next and next,, select the necessary software (Direct X and Visual C++ [provided in Redist folder]),, again next,, finally on 'Install'...PLAY THE GAME FROM DESKTOP SHORTCUT using run as administrator.... 
+
+Always open the game using 'Run as administrator' to avoid any savegame/crash issue, if it still crashes, lower the graphics settings and make sure u meet the system requirements along with updated graphic drivers for your graphics card ...
+
+Check out my Official facebook page:
+Motlob.com
+Like it guys to support, to get any help and updates on upcoming repacks

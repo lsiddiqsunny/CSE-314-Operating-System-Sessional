@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="Anchor1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Student.StudentLogInController">
+   <children>
+      <Text layoutX="259.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Student">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Text fx:id="iptext" layoutX="229.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IP :" />
+      <TextField fx:id="ip" layoutX="268.0" layoutY="96.0" />
+      <Text fx:id="portText" layoutX="217.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Port :" />
+      <TextField fx:id="port" layoutX="268.0" layoutY="130.0" />
+      <TextArea fx:id="log" layoutX="58.0" layoutY="194.0" prefHeight="200.0" prefWidth="499.0" />
+      <Button fx:id="connect" layoutX="278.0" layoutY="163.0" mnemonicParsing="false" onAction="#ConnectClicked" text="Connect" />
+      <Text layoutX="228.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID :" />
+      <TextField fx:id="ID" layoutX="268.0" layoutY="62.0" />
+      <AnchorPane fx:id="Anchor2" layoutY="96.0" prefHeight="92.0" prefWidth="600.0" visible="false">
+         <children>
+            <Button fx:id="Disconnect" layoutX="279.0" layoutY="66.0" mnemonicParsing="false" onAction="#DisconnectClicked" text="Disconnect" />
+            <Text layoutX="192.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Receiver ID:" />
+            <TextField fx:id="Receiver" layoutX="268.0" layoutY="2.0" />
+            <Button fx:id="fileChooser" layoutX="95.0" layoutY="34.0" mnemonicParsing="false" onAction="#ChooseFile" text="Choose File:" />
+            <TextField fx:id="filePath" layoutX="194.0" layoutY="34.0" prefHeight="25.0" prefWidth="389.0" />
+            <Button fx:id="send" layoutX="95.0" layoutY="66.0" mnemonicParsing="false" onAction="#sendClicked" text="Send" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

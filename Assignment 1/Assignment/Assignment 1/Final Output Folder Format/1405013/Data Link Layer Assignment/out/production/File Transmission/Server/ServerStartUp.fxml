@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="174.0" prefWidth="302.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Server.ServerStartUp">
+   <children>
+      <Button layoutX="112.0" layoutY="75.0" mnemonicParsing="false" onAction="#startServer" text="Start Server" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.HomeController">
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+    <children>
+        <AnchorPane prefHeight="279.0" prefWidth="466.0">
+         <children>
+            <Button layoutX="173.0" layoutY="161.0" mnemonicParsing="false" onAction="#chooseFile" text="Choose File" textFill="#1f22da">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+
+             <TextField fx:id="receiverId" layoutX="159.0" layoutY="85.0" />
+             <Label layoutX="103.0" layoutY="86.0" prefHeight="17.0" prefWidth="62.0" text="Send To" textFill="#bb19c9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="warning" layoutX="125.0" layoutY="44.0" prefHeight="20.0" prefWidth="216.0" textAlignment="CENTER" textFill="#c30f1e">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Button layoutX="207.0" layoutY="220.0" mnemonicParsing="false" onAction="#sendFile" text="Send" textFill="#2615e1">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+        </AnchorPane>
+    </children>
+</GridPane>

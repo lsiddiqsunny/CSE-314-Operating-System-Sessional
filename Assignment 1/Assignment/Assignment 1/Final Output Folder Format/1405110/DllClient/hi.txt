@@ -1,0 +1,15 @@
+Exercise no = mod( 1*20 + mod( 1405044 , 1000 ) , 26 ) + 1 = 13
+Checker no = mod( 1*5 + mod( 1405044 , 1000 ) + 60 , 122 ) + 1 = 110
+
+Solution of Ex-01 Problem-13 :
+
+Here, the recurrence realation,
+
+Z(n) = Z(n-1) + 9(n-1) + 1   , where Z(1) = 2
+
+So, Z(n) = 2 + sum_{k=2}_n  (9k-8)
+	 = 2 + sum_{k=1}_{n-1} (9k+1)
+	 = 2 + 9/2 * n(n-1) + (n-1)
+	 = 1/2 * ( 9n^2 - 7n + 2 ) 
+
+Hence, The maximum number of regions is 1/2 * ( 9n^2 - 7n + 2 ).

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.ClientLogWindow">
+   <children>
+      <TextArea fx:id="clientLog" editable="false" layoutX="80.0" layoutY="74.0" prefHeight="332.0" prefWidth="481.0" />
+      <Button layoutX="295.0" layoutY="422.0" mnemonicParsing="false" onAction="#receive" text="Receive" />
+      <Button layoutX="144.0" layoutY="422.0" mnemonicParsing="false" onAction="#send" text="Send" />
+      <Button layoutX="449.0" layoutY="422.0" mnemonicParsing="false" onAction="#exit" text="Exit" />
+   </children>
+</AnchorPane>
