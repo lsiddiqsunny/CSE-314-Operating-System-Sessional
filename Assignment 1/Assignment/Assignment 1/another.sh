@@ -1,6 +1,6 @@
 
 
-i="Zaara Tasnim_3000810_assignsubmission_file_1405019_assignment1.zip"
+i="Mohammod Riad Ashraf_3000172_assignsubmission_file_1405115.zip"
 
 
     var1="$(echo $i|rev|cut -d'.' -f1|rev)"
@@ -29,54 +29,76 @@ i="Zaara Tasnim_3000810_assignsubmission_file_1405019_assignment1.zip"
            
 
         else 
-           var2="7"
-           var3="${#var1}"
-           if [ "$var2" = "$var3 " ]
-           then 
-                #found roll number in the zip file,get zero
-                mv "$var4" "$var1"
-                mv "$var1" ../output
-                echo "$var1-0">>../output/marks.txt
-                echo "$(grep -v $var1 ../output/absent.txt)">../output/absent.txt #removing roll from absent list
-           else
-                #1.roll number in directory ok but not ok in zip  
-                #2.roll number in directory not ok and also in zip
-                var2="7"
-                var3="${#var4}"
-              
-                if [ "$var2" = "$var3" ]
-                then 
-                    
-                    mv "$var4" ../output
-                    echo "$var4-0">>../output/marks.txt
-                    echo "$(grep -v $var4 ../output/absent.txt)">../output/absent.txt #removing roll from absent list
+          :
+        fi
+    else 
+        var2=`ls`
+        mkdir "$var1"
+        for j in $var2
+        do
 
-                else
+            mv "$j" "$var1"
+
+        done
+        var2="7"
+        var3="${#var1}"
+        if [ "$var2" = "$var3" ]
+        then 
+            mv "$var1" ../output
+            echo "$var1-0">>../output/marks.txt
+            echo "$(grep -v $var1 ../output/absent.txt)">../output/absent.txt #removing roll from absent list
+        else
+
                     var2="$(echo $i|cut -d'_' -f1)"
-                    var3="$(grep -i $var2 CSE_322.csv|wc -l)"
+                    var3="$(grep -i "$var2" CSE_322.csv|wc -l)"
                     var5="1"
                     if [ "$var3" = "$var5" ]
                     then 
                         var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|sed -e 's/^"//' -e 's/"$//'|sed -e 's/^[[:space:]]*//')" 
-                        mv "$var4" "$var3"
+                        mv "$var1" "$var3"
                         mv "$var3" ../output
                         echo "$var3-0">>../output/marks.txt
                         echo "$(grep -v $var3 ../output/absent.txt)">../output/absent.txt #removing roll from absent list
 
 
                     else 
-                        #can not identify,move to extra
-                        mv "$var4" "$var2"
-                        mv "$var2" ../output/extra
                         
-                    fi
-                fi
-            fi
-        fi
-    else 
-        : 
-    fi
+                        #echo "$var4">../check5.txt
+                        count=$((0))  #counting from zero
+                        var2="$(echo $i|cut -d'_' -f1)" #student name
+                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|sed -e 's/^"//' -e 's/"$//'|sed -e 's/^[[:space:]]*//')" #taking matchedr roll numbe
+                        rem=""
+                        var5="1"
+                        for j in var3
+                        do
+                           #checking in the absent list
+                            var6="$(grep "$j" ../output/absent.txt|wc -l)"
+                            if [ "$var5" = "$var6" ]
+                            then
+                                #increaing instance of id for same name 
+                                ((count++))
+                                rem="$j" 
+                            fi
+                            
+                        done
+                        #find one absent student
+                        if [ "$var5" = "$count" ]
+                        then
+                            mv "$var1" "$rem"
+                            mv "$rem" ../output
+                            echo "$rem-0">>../output/marks.txt
+                            echo "$(grep -v $rem ../output/absent.txt)">../output/absent.txt #removing roll from absent list
+                        else
+                        #can not identify uniquly,move to extra
+                        mv "$var1" "$var2"
+                        mv "$var2" ../output/Extra
 
+                        fi    
+                    fi
+
+        fi
+
+    fi
     cd ..
  
 

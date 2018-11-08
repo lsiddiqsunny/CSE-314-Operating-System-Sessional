@@ -81,28 +81,35 @@ do
     if [ "$var2" = "$var3" ] #if number of files is one
     then
         var4="$(ls)"
-        if [ "$var4" = "$var1" ]
+        var5="7"
+        var6="${#var1}"
+
+
+
+
+
+        if [ "$var4" = "$var1" -a "$var5" = "$var6" ]
         then
             #match with roll number,get full marks
-            echo "$var1 ">>../check2.txt
+            #echo "$var1 ">>../check2.txt
             mv "$var4" ../output
             echo "$var1-10">>../output/marks.txt
-        elif [[ $var4 =~ $var1 ]];
+        elif [[ $var4 =~ $var1 && "$var5" = "$var6" ]];
         then
             #contain the roll number,get half marks
-            echo "$var1 ">>../check3.txt
+            #echo "$var1 ">>../check3.txt
             mv "$var4" "$var1"
             mv "$var1" ../output
             echo "$var1-5">>../output/marks.txt
 
         else 
           
-           var2="7"
-           var3="${#var1}"
+          var2="7"
+          var3="${#var1}"
            if [ "$var2" = "$var3" ]
            then 
                 #found roll number in the zip file,get zero
-                echo "$var1 ">>../check4.txt
+                # echo "$var1 ">>../check4.txt
                 mv "$var4" "$var1"
                 mv "$var1" ../output
                 echo "$var1-0">>../output/marks.txt
@@ -122,7 +129,7 @@ do
 
                 else
                     var2="$(echo $i|cut -d'_' -f1)"
-                    var3="$(grep -i $var2 CSE_322.csv|wc -l)"
+                    var3="$(grep -i "$var2" CSE_322.csv|wc -l)"
                     var5="1"
                     if [ "$var3" = "$var5" ]
                     then 
@@ -134,17 +141,108 @@ do
 
 
                     else 
-                        #can not identify,move to extra
-                        echo "$var4">../check5.txt
+                        
+                        #echo "$var4">../check5.txt
+                        count=$((0))  #counting from zero
+                        var2="$(echo $i|cut -d'_' -f1)" #student name
+                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|sed -e 's/^"//' -e 's/"$//'|sed -e 's/^[[:space:]]*//')" #taking matchedr roll numbe
+                        rem=""
+                        var5="1"
+                        for j in var3
+                        do
+                           #checking in the absent list
+                            var6="$(grep "$j" ../output/absent.txt|wc -l)"
+                            if [ "$var5" = "$var6" ]
+                            then
+                                #increaing instance of id for same name 
+                                ((count++))
+                                rem="$j" 
+                            fi
+                            
+                        done
+                        #find one absent student
+                        if [ "$var5" = "$count" ]
+                        then
+                            mv "$var4" "$rem"
+                            mv "$rem" ../output
+                            echo "$rem-0">>../output/marks.txt
+                            echo "$(grep -v $rem ../output/absent.txt)">../output/absent.txt #removing roll from absent list
+                        else
+                        #can not identify uniquly,move to extra
                         mv "$var4" "$var2"
                         mv "$var2" ../output/Extra
-                        
+
+                        fi    
                     fi
                 fi
             fi
         fi
     else 
-        echo "$var1 ">>../check6.txt
+    var2=`ls`
+        mkdir "$var1"
+        for j in $var2
+        do
+
+            mv "$j" "$var1"
+
+        done
+        var2="7"
+        var3="${#var1}"
+        if [ "$var2" = "$var3" ]
+        then 
+            mv "$var1" ../output
+            echo "$var1-0">>../output/marks.txt
+            echo "$(grep -v $var1 ../output/absent.txt)">../output/absent.txt #removing roll from absent list
+        else
+
+                    var2="$(echo $i|cut -d'_' -f1)"
+                    var3="$(grep -i "$var2" CSE_322.csv|wc -l)"
+                    var5="1"
+                    if [ "$var3" = "$var5" ]
+                    then 
+                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|sed -e 's/^"//' -e 's/"$//'|sed -e 's/^[[:space:]]*//')" 
+                        mv "$var1" "$var3"
+                        mv "$var3" ../output
+                        echo "$var3-0">>../output/marks.txt
+                        echo "$(grep -v $var3 ../output/absent.txt)">../output/absent.txt #removing roll from absent list
+
+
+                    else 
+                        
+                        #echo "$var4">../check5.txt
+                        count=$((0))  #counting from zero
+                        var2="$(echo $i|cut -d'_' -f1)" #student name
+                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|sed -e 's/^"//' -e 's/"$//'|sed -e 's/^[[:space:]]*//')" #taking matchedr roll numbe
+                        rem=""
+                        var5="1"
+                        for j in var3
+                        do
+                           #checking in the absent list
+                            var6="$(grep "$j" ../output/absent.txt|wc -l)"
+                            if [ "$var5" = "$var6" ]
+                            then
+                                #increaing instance of id for same name 
+                                ((count++))
+                                rem="$j" 
+                            fi
+                            
+                        done
+                        #find one absent student
+                        if [ "$var5" = "$count" ]
+                        then
+                            mv "$var1" "$rem"
+                            mv "$rem" ../output
+                            echo "$rem-0">>../output/marks.txt
+                            echo "$(grep -v $rem ../output/absent.txt)">../output/absent.txt #removing roll from absent list
+                        else
+                        #can not identify uniquly,move to extra
+                        mv "$var1" "$var2"
+                        mv "$var2" ../output/Extra
+
+                        fi    
+                    fi
+
+        fi
     fi
 
     cd ..
