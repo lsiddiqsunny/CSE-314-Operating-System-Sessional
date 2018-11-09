@@ -18,10 +18,7 @@ echo "$var2">temp.txt
 
 for i in $var1
 do  
-    var3="${#i}"
-    var4="7"
-    if [ "$var3" = "$var4" ] #roll in zip file match with roster
-    then
+    if grep -qi "$i" temp.txt;then #roll in zip file match with roster
         echo "$i">>present.txt
     else 
         :
