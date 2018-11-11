@@ -1,4 +1,4 @@
-#unzip SubmissionAll.zip -d AllSubmission #for unzipping
+#unzip submissionsAll.zip -d AllSubmission #for unzipping
 
 #ls | cut -d'_' -f1 # to find name
 touch temp.txt
@@ -12,7 +12,7 @@ var1="$(ls AllSubmission | cut -d'_' -f5-|cut -d'.' -f1)" #finding all submissio
 
 
 #all roll number from csv file and remove space and quote and copy to temp.txt
-var2="$(cut -d',' -f1 CSE_322.csv|sed -e 's/^"//' -e 's/"$//'|sed -e 's/^[[:space:]]*//')" 
+var2="$(cut -d',' -f1 CSE_322.csv|tr -d '"'|tr -d '\t')" 
 echo "$var2">temp.txt 
 
 
@@ -37,17 +37,16 @@ do
     
 done
 
-rm present.txt
 rm temp.txt
 unset IFS
 
 touch output/marks.txt
 mkdir output/Extra
-touch ../check2.txt
-touch ../check3.txt
-touch ../check4.txt
-touch ../check5.txt
-touch ../check6.txt
+touch check2.txt
+touch check3.txt
+touch check4.txt
+touch check5.txt
+touch check6.txt
 value1=`ls AllSubmission`
 
 IFS=$(echo -en "\n\b")
@@ -78,32 +77,31 @@ do
     if [ "$var2" = "$var3" ] #if number of files is one
     then
         var4="$(ls)"
-        var5="7"
-        var6="${#var1}"
+        #var5="7"
+        #var6="${#var1}"
 
 
+        var7="$(grep  "$var1" ../CSE_322.csv|wc -l)"
+        var8="1"
 
 
-
-        if [ "$var4" = "$var1" -a "$var5" = "$var6" ]
+        if [[ "$var4" = "$var1" && "$var7" = "$var8" ]]
         then
             #match with roll number,get full marks
             #echo "$var1 ">>../check2.txt
             mv "$var4" ../output
             echo "$var1-10">>../output/marks.txt
-        elif [[ $var4 =~ $var1 && "$var5" = "$var6" ]];
+        elif [[ $var4 =~ $var1 && "$var7" = "$var8" ]];
         then
             #contain the roll number,get half marks
-            #echo "$var1 ">>../check3.txt
+            echo "$var1 ">>../check3.txt
             mv "$var4" "$var1"
             mv "$var1" ../output
             echo "$var1-5">>../output/marks.txt
 
         else 
-          
-          var2="7"
-          var3="${#var1}"
-           if [ "$var2" = "$var3" ]
+
+           if [ "$var7" = "$var8" ]
            then 
                 #found roll number in the zip file,get zero
                 # echo "$var1 ">>../check4.txt
@@ -114,10 +112,11 @@ do
            else
                 #1.roll number in directory ok but not ok in zip  
                 #2.roll number in directory not ok and also in zip
-                var2="7"
-                var3="${#var4}"
+                var7="$(grep  "$var4" ../CSE_322.csv|wc -l)"
+                var8="1"
+
               
-                if [ "$var2" = "$var3" ]
+                if [ "$var7" = "$var8" ]
                 then 
                     
                     mv "$var4" ../output
@@ -130,7 +129,7 @@ do
                     var5="1"
                     if [ "$var3" = "$var5" ]
                     then 
-                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|sed -e 's/^"//' -e 's/"$//'|sed -e 's/^[[:space:]]*//')" 
+                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|tr -d '"'|tr -d '\t')" 
                         mv "$var4" "$var3"
                         mv "$var3" ../output
                         echo "$var3-0">>../output/marks.txt
@@ -142,7 +141,7 @@ do
                         #echo "$var4">../check5.txt
                         count=$((0))  #counting from zero
                         var2="$(echo $i|cut -d'_' -f1)" #student name
-                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|sed -e 's/^"//' -e 's/"$//'|sed -e 's/^[[:space:]]*//')" #taking matchedr roll numbe
+                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|tr -d '"'|tr -d '\t')" #taking matchedr roll numbe
                         rem=""
                         var5="1"
                         for j in var3
@@ -175,16 +174,17 @@ do
             fi
         fi
     else 
+    #echo "$var1 ">>../check5.txt
     var2=`ls`
-        mkdir "$var1"
+    mkdir "$var1"
         for j in $var2
         do
 
             mv "$j" "$var1"
 
         done
-        var2="7"
-        var3="${#var1}"
+        var2="$(grep  "$var1" ../CSE_322.csv|wc -l)"
+        var3="1"
         if [ "$var2" = "$var3" ]
         then 
             mv "$var1" ../output
@@ -197,7 +197,7 @@ do
                     var5="1"
                     if [ "$var3" = "$var5" ]
                     then 
-                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|sed -e 's/^"//' -e 's/"$//'|sed -e 's/^[[:space:]]*//')" 
+                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|tr -d '"'|tr -d '\t')" 
                         mv "$var1" "$var3"
                         mv "$var3" ../output
                         echo "$var3-0">>../output/marks.txt
@@ -209,7 +209,7 @@ do
                         #echo "$var4">../check5.txt
                         count=$((0))  #counting from zero
                         var2="$(echo $i|cut -d'_' -f1)" #student name
-                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|sed -e 's/^"//' -e 's/"$//'|sed -e 's/^[[:space:]]*//')" #taking matchedr roll numbe
+                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|tr -d '"'|tr -d '\t')" #taking matchedr roll numbe
                         rem=""
                         var5="1"
                         for j in var3
@@ -246,3 +246,9 @@ do
     rm -r tempdir
 done
 unset IFS
+rm check2.txt
+rm check3.txt
+rm check4.txt
+rm check5.txt
+rm check6.txt
+rm present.txt
