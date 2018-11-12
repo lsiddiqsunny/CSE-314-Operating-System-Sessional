@@ -1,6 +1,5 @@
 #unzip submissionsAll.zip -d AllSubmission #for unzipping
 
-#ls | cut -d'_' -f1 # to find name
 touch temp.txt
 IFS=$(echo -en "\n\b")
 mkdir output
@@ -38,7 +37,6 @@ do
 done
 
 rm temp.txt
-unset IFS
 
 touch output/marks.txt
 mkdir output/Extra
@@ -49,7 +47,6 @@ touch check5.txt
 touch check6.txt
 value1=`ls AllSubmission`
 
-IFS=$(echo -en "\n\b")
 for i in $value1
 do
 
@@ -114,7 +111,6 @@ do
                 #2.roll number in directory not ok and also in zip
                 var7="$(grep  "$var4" ../CSE_322.csv|wc -l)"
                 var8="1"
-
               
                 if [ "$var7" = "$var8" ]
                 then 
@@ -125,11 +121,11 @@ do
 
                 else
                     var2="$(echo $i|cut -d'_' -f1)"
-                    var3="$(grep -i "$var2" CSE_322.csv|wc -l)"
+                    var3="$(grep -i "$var2" ../CSE_322.csv|wc -l)"
                     var5="1"
                     if [ "$var3" = "$var5" ]
                     then 
-                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|tr -d '"'|tr -d '\t')" 
+                        var3="$(grep -i "$var2" ../CSE_322.csv|cut -d',' -f1|tr -d '"'|tr -d '\t')" 
                         mv "$var4" "$var3"
                         mv "$var3" ../output
                         echo "$var3-0">>../output/marks.txt
@@ -141,22 +137,24 @@ do
                         #echo "$var4">../check5.txt
                         count=$((0))  #counting from zero
                         var2="$(echo $i|cut -d'_' -f1)" #student name
-                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|tr -d '"'|tr -d '\t')" #taking matchedr roll numbe
+                        var3="$(grep -i "$var2" ../CSE_322.csv|cut -d',' -f1|tr -d '"'|tr -d '\t')" #taking matched roll number
                         rem=""
                         var5="1"
-                        for j in var3
+                        for j in $var3
                         do
                            #checking in the absent list
-                            var6="$(grep "$j" ../output/absent.txt|wc -l)"
+                            var6="$(grep $j ../output/absent.txt|wc -l)"
                             if [ "$var5" = "$var6" ]
                             then
                                 #increaing instance of id for same name 
                                 ((count++))
-                                rem="$j" 
+                                rem=$j 
                             fi
+                            #echo "$j">../check5.txt
                             
                         done
                         #find one absent student
+                        
                         if [ "$var5" = "$count" ]
                         then
                             mv "$var4" "$rem"
@@ -193,11 +191,11 @@ do
         else
 
                     var2="$(echo $i|cut -d'_' -f1)"
-                    var3="$(grep -i "$var2" CSE_322.csv|wc -l)"
+                    var3="$(grep -i "$var2" ../CSE_322.csv|wc -l)"
                     var5="1"
                     if [ "$var3" = "$var5" ]
                     then 
-                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|tr -d '"'|tr -d '\t')" 
+                        var3="$(grep -i "$var2" ../CSE_322.csv|cut -d',' -f1|tr -d '"'|tr -d '\t')" 
                         mv "$var1" "$var3"
                         mv "$var3" ../output
                         echo "$var3-0">>../output/marks.txt
@@ -209,10 +207,10 @@ do
                         #echo "$var4">../check5.txt
                         count=$((0))  #counting from zero
                         var2="$(echo $i|cut -d'_' -f1)" #student name
-                        var3="$(grep -i "$var2" CSE_322.csv|cut -d',' -f1|tr -d '"'|tr -d '\t')" #taking matchedr roll numbe
+                        var3="$(grep -i "$var2" ../CSE_322.csv|cut -d',' -f1|tr -d '"'|tr -d '\t')" #taking matchedr roll numbe
                         rem=""
                         var5="1"
-                        for j in var3
+                        for j in $var3
                         do
                            #checking in the absent list
                             var6="$(grep "$j" ../output/absent.txt|wc -l)"
