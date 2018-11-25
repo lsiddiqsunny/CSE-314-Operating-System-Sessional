@@ -7,7 +7,9 @@ int main( void ) {
 	int pid = fork();
 
 	if ( pid == 0 ) {
+		
 		execvp( "find", argv );
+		//printf("child is here");
 	}
 
 	/* Put the parent to sleep for 10 seconds--let the child finished executing */

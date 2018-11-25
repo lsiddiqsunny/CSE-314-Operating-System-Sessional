@@ -39,8 +39,9 @@ int main() {
 		pid_t child_pid;
 		child_pid = wait(&stat_val);
 		printf("Child has finished: PID = %d\n", child_pid);
+		//WIFEXITED(stat_val) - Nonzero if the child is terminated normally
 		if(WIFEXITED(stat_val))
-			printf("Child exited with code %d\n", WEXITSTATUS(stat_val));
+			printf("Child exited with code %d\n", WEXITSTATUS(stat_val)); // WEXITSTATUS(stat_val) - If WIFEXITED is nonzero, this returns child exit code.
 		else
 			printf("Child terminated abnormally\n");
 	}

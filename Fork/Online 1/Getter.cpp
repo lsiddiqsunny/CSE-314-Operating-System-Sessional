@@ -1,0 +1,44 @@
+#include "Data.h"
+#include <sys/shm.h>
+#include<unistd.h>
+#include<stdlib.h>
+#include<stdio.h>
+#include<string.h>
+
+int main(){
+
+    int running = 1;
+	void *shared_memory = (void *)0;
+	struct shared_use_st *shared_stuff;
+	int shmid;
+	shmid = shmget((key_t)1234, sizeof(struct shared_use_st), 0666 | IPC_CREAT);
+	if (shmid == -1) {
+		printf("shmget failed\n");
+		exit(EXIT_FAILURE);
+	}
+	shared_memory = shmat(shmid, (void *)0, 0);
+	if (shared_memory == (void *)-1) {
+		printf("shmat failed\n");
+		exit(EXIT_FAILURE);
+	}
+	printf("Memory attached at %p\n", shared_memory);	
+	shared_stuff = (struct shared_use_st *)shared_memory;
+	shared_stuff->written_by_you = 0;
+	while(running) {
+        if(shared_stuff->Size!=0&&  strncmp(shared_stuff->command,"show",4)==0){
+	        printf("%d\n",shared_stuff->v[0]);
+            sleep(4);
+        }
+            if (strncmp(shared_stuff->command,"end",3)==0) {
+				running = 0;
+			}
+			
+		
+	}
+	if (shmdt(shared_memory) == -1) {
+		printf("shmdt failed\n");
+		exit(EXIT_FAILURE);
+	}
+	
+	exit(EXIT_SUCCESS);
+}
