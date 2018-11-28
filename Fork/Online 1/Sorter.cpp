@@ -38,6 +38,7 @@ int main(int argc, char *argv[]){
 	
             
             if(strcmp(shared_stuff->command,"Sort")==0){
+				if (!semaphore_p()) exit(EXIT_FAILURE);
 				//printf("%s\n",shared_stuff->command);
 				int x[shared_stuff->Size];
             for(int i=0;i<shared_stuff->Size;i++){
@@ -73,6 +74,7 @@ int main(int argc, char *argv[]){
                 strncpy(shared_stuff->command,"Sorted",MAX_SZ);
             }
 			sleep(1);
+			if (!semaphore_v()) exit(EXIT_FAILURE);	
             }
 			
 		
