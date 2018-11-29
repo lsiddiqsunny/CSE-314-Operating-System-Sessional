@@ -26,17 +26,17 @@ void * chef1(void * arg)
 	    printf("%s\n",(char*)arg);
         pthread_mutex_unlock(&lock);
         while(1){
+        pthread_mutex_lock(&lock);
         if(q1.size()==5){
             sem_init(&chef,0,0);
+            pthread_mutex_unlock(&lock);
             sem_wait(&chef);
 
-        }	
-		
-        
+        }else{
         q1.push(1);
-        pthread_mutex_lock(&lock);	
-		printf("chef x produces chocolate cake \n");
+        printf("chef x produces chocolate cake \n");
         pthread_mutex_unlock(&lock);
+        }
         sleep(2);
         }
 	
@@ -48,18 +48,19 @@ void * chef2(void * arg)
         pthread_mutex_unlock(&lock);
 	
 		while(1){
-          if(q1.size()==5){
+        pthread_mutex_lock(&lock);
+        if(q1.size()==5){
             sem_init(&chef,0,0);
+            pthread_mutex_unlock(&lock);
             sem_wait(&chef);
 
-        }	
-        
+        }else{
         q1.push(2);
-		pthread_mutex_lock(&lock);
 		printf("chef y produces vanila cake \n");
-		
 		pthread_mutex_unlock(&lock);
-         sleep(2);
+        }
+        
+        sleep(2);
         }	
 }
 
@@ -72,41 +73,48 @@ void * chef3(void * arg)
 		
        
         printf("Before: %d %d %d\n",q1.size(),q2.size(),q3.size());
+        pthread_mutex_lock(&lock);	
         if(q1.size()==0){
            // sem_init(&chef,0,0);
             sem_post(&chef);
+            pthread_mutex_unlock(&lock);
 
         }else{
+            
             int x=q1.front();
-            q1.pop();
         if(x==1){
-            pthread_mutex_lock(&lock);
-		    printf("chef z decorates chocolate cake \n");
-            pthread_mutex_unlock(&lock); 
             if(q2.size()==5){
                 sem_init(&choco1,0,0);
+                pthread_mutex_unlock(&lock);
+
                 sem_wait(&choco1);
             }
             
+            q1.pop();
             q2.push(1);
-           
-        }else{
-            pthread_mutex_lock(&lock);
-            printf("chef z decorates vanila cake \n");
+            printf("chef z decorates chocolate cake \n");
             pthread_mutex_unlock(&lock);
+		    
+            }else{
+            
             if(q3.size()==5){
                 sem_init(&vanila1,0,0);
+                pthread_mutex_unlock(&lock);
                 sem_wait(&vanila1);
             }
-            q3.push(1);
             
+            q1.pop();
+            q3.push(1);
+            printf("chef z decorates vanila cake \n");
+            pthread_mutex_unlock(&lock);
 
         }
         printf("After: %d %d %d\n",q1.size(),q2.size(),q3.size());
         
          
 
-        }	sleep(2);	
+        }	
+        sleep(2);	
 		
         }
 }
@@ -116,19 +124,18 @@ void * waiter1(void * arg)
 	    printf("%s\n",(char*)arg);
         pthread_mutex_unlock(&lock);
         while(1){
+        pthread_mutex_lock(&lock);	
         if(q2.size()==0){
             sem_post(&choco1);
+            pthread_mutex_unlock(&lock);
         }
         else{
-        
-		
+        	
        	q2.pop();
-        pthread_mutex_lock(&lock);	
-		printf("waiter 1 serves chocolate cake \n");
-        
-		pthread_mutex_unlock(&lock);
+        printf("waiter 1 serves chocolate cake \n");
+        pthread_mutex_unlock(&lock);
         }
-         sleep(2);
+        sleep(2);
         }
 	
 }
@@ -138,18 +145,18 @@ void * waiter2(void * arg)
 	    printf("%s\n",(char*)arg);
         pthread_mutex_unlock(&lock);
         while(1){
-         if(q3.size()==0){
+        pthread_mutex_lock(&lock);
+        if(q3.size()==0){
             sem_post(&vanila1);
+            pthread_mutex_unlock(&lock);
         }
         else{
-        
-		
+        	
        	q3.pop();
-        pthread_mutex_lock(&lock);	
-		printf("waiter 2 serves vanila cake \n");
+        printf("waiter 2 serves vanila cake \n");
         pthread_mutex_unlock(&lock);
         }
-         sleep(2);
+        sleep(2);
         }
 }
 

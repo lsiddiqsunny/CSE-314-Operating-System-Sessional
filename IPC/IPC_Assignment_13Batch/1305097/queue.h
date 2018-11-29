@@ -9,6 +9,10 @@
 #include <malloc.h>
 #include <semaphore.h>
 #include <pthread.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/shm.h>
+#include<unistd.h>
 
 #define FAIL -1
 #define SUCCESS 1
