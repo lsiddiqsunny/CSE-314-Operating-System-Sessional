@@ -35,9 +35,10 @@ void * chef1(void * arg)
         }else{
         q1.push(1);
         printf("chef x produces chocolate cake \n");
-        pthread_mutex_unlock(&lock);
-        }
+        pthread_mutex_unlock(&lock); 
         sleep(2);
+        }
+       
         }
 	
 }
@@ -58,9 +59,10 @@ void * chef2(void * arg)
         q1.push(2);
 		printf("chef y produces vanila cake \n");
 		pthread_mutex_unlock(&lock);
+        sleep(2);
         }
         
-        sleep(2);
+        
         }	
 }
 
@@ -134,8 +136,9 @@ void * waiter1(void * arg)
        	q2.pop();
         printf("waiter 1 serves chocolate cake \n");
         pthread_mutex_unlock(&lock);
-        }
         sleep(2);
+        }
+        
         }
 	
 }
@@ -155,8 +158,9 @@ void * waiter2(void * arg)
        	q3.pop();
         printf("waiter 2 serves vanila cake \n");
         pthread_mutex_unlock(&lock);
-        }
         sleep(2);
+        }
+        
         }
 }
 
