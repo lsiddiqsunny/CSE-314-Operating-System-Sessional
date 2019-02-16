@@ -4,12 +4,13 @@ pthread_mutex_t mutex;
 int sum_value;
 void *doSum (void *arg) {
 int sum = (int) arg;
-for(int i=0;i<10;i++){
-	pthread_mutex_lock(&mutex);
-	sum_value += sum;
-	printf("After sum in thread %d = %d\n", sum, sum_value);
-	pthread_mutex_unlock (&mutex);
-	sleep(1);}
+	for(int i=0;i<10;i++){
+		pthread_mutex_lock(&mutex);
+		sum_value += sum;
+		printf("After sum in thread %d = %d\n", sum, sum_value);
+		pthread_mutex_unlock (&mutex);
+		sleep(1);
+	}
 }
 int main (int argc, char *argv[]) {
 pthread_t thread1, thread2;
